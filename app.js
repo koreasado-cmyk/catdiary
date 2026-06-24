@@ -3,7 +3,7 @@
 /* ---------- 다국어 (i18n) ---------- */
 const I18N = {
   ko:{
-    appTitle:'냥로그 🐈', count:'마리',
+    appTitle:'키코다이어리 🐈', count:'마리',
     home_cat:'🐾 카테고리', catg_add_tile:'카테고리 추가',
     home_today:'📝 오늘 기록', today_done:'오늘 기록 완료', today_do:'기록하기',
     home_alert:'⚠️ 관찰이 필요해요',
