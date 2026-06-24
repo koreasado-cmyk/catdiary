@@ -69,7 +69,7 @@ const I18N = {
     }
   },
   ja:{
-    appTitle:'ニャンログ 🐈', count:'匹',
+    appTitle:'キコダイアリー 🐈', count:'匹',
     home_cat:'🐾 カテゴリー', catg_add_tile:'カテゴリー追加',
     home_today:'📝 今日の記録', today_done:'今日の記録 完了', today_do:'記録する',
     home_alert:'⚠️ 観察が必要です',
