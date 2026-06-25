@@ -59,6 +59,10 @@ const I18N = {
     empty_rec_btn:'＋ 오늘 기록 시작하기',
     empty_stats_title:'통계가 곧 채워져요 📊', empty_stats_note:'몸무게를 2번 이상 기록하면 그래프가, 매일 기록하면 30일 요약이 나타나요.',
     empty_stats_btn:'📝 오늘 건강 기록하기',
+    quick_normal:'👍 특이사항 없음', quick_saved:'오늘은 특이사항 없음으로 기록했어요 🐾',
+    vet_empty_note:'예방접종·진료·검사 기록을 남겨두면 다음 진료 일정과 병원 리포트에 활용할 수 있어요.',
+    vet_add_btn:'＋ 병원 방문 기록하기',
+    req_badge:'필수', opt_badge:'선택', rep_days:'기록 일수',
     cal_legend_v:'구토', cal_legend_p:'묽은 변', cal_legend_m:'약', cal_legend_h:'병원', cal_legend_g:'사진',
     stats_weight:'⚖️ 몸무게 변화', stats_30:'📊 최근 30일 요약', stats_none:'몸무게 기록이 2회 이상 쌓이면 그래프가 표시돼요',
     st_vomit:'구토', st_loose:'묽은 변', st_lowappe:'식욕저하', st_lowwater:'물 부족', st_vet:'병원', st_wchange:'몸무게 변화',
@@ -160,6 +164,10 @@ const I18N = {
     empty_rec_btn:'＋ 今日の記録を始める',
     empty_stats_title:'統計がもうすぐ表示されます 📊', empty_stats_note:'体重を2回以上記録するとグラフが、毎日記録すると30日まとめが表示されます。',
     empty_stats_btn:'📝 今日の健康を記録',
+    quick_normal:'👍 特記なし', quick_saved:'今日は「特記なし」で記録しました 🐾',
+    vet_empty_note:'予防接種・診療・検査の記録を残すと、次の通院予定や病院レポートに活用できます。',
+    vet_add_btn:'＋ 通院を記録する',
+    req_badge:'必須', opt_badge:'任意', rep_days:'記録日数',
     cal_legend_v:'嘔吐', cal_legend_p:'軟便', cal_legend_m:'薬', cal_legend_h:'病院', cal_legend_g:'写真',
     stats_weight:'⚖️ 体重の変化', stats_30:'📊 最近30日のまとめ', stats_none:'体重記録が2回以上たまるとグラフが表示されます',
     st_vomit:'嘔吐', st_loose:'軟便', st_lowappe:'食欲低下', st_lowwater:'水不足', st_vet:'病院', st_wchange:'体重の変化',
@@ -378,6 +386,17 @@ function startRegister(){
   if(!cat){ cat={id:uid(),name:t('default_catg'),emoji:'🏠'}; DB.state.categories.push(cat); DB.saveState(); }
   go('editCat',{cat:cat.id});
 }
+/* 원터치 '오늘 특이사항 없음' 정상 기록 저장 */
+async function quickNormalSave(catId){
+  const td=todayStr();
+  if(DB.state.diary.some(e=>e.catId===catId && e.date===td)){ go('cat',{id:catId,tab:'record'}); return; }
+  DB.state.diary.push({ id:uid(), catId, date:td, mood:'😺',
+    condition:'good', meal:'well', water:'normal', poop:'normal', pee:'normal', vomit:'none', play:'',
+    weight:'', meds:'', body:'' });
+  await DB.saveState();
+  toast(t('quick_saved'),2400);
+  render();
+}
 function catAlert(catId){
   const cut=daysAgoStr(7); const rs=recsOf(catId).filter(e=>(e.date||'')>=cut);
   let vomit=0,loose=0,low=0,pee=0;
@@ -426,6 +445,10 @@ function render(){
   if(v==='settings') return renderSettings();
 }
 function addFab(fn){ const b=document.createElement('button'); b.className='fab'; b.textContent='＋'; b.setAttribute('aria-label', t('aria_add')); b.onclick=fn; document.body.appendChild(b); }
+/* 날짜 입력 옆에 한국식(2026.06.25) 표기를 실시간으로 보여줌 */
+function wireDateHint(inputId,hintId){ const inp=$('#'+inputId), h=$('#'+hintId); if(!inp||!h) return;
+  const upd=()=>{ h.textContent = inp.value? '📅 '+fmtDate(inp.value) : ''; };
+  inp.addEventListener('change',upd); inp.addEventListener('input',upd); upd(); }
 
 /* ---------- 홈 ---------- */
 function renderHome(){
@@ -464,7 +487,10 @@ function renderHome(){
       const status= done? `<span class="stat done">✓ ${t('today_status_done')}</span>` : `<span class="stat todo">${t('today_status_todo')}</span>`;
       const btn= done
         ? `<button class="act view" onclick="event.stopPropagation();go('cat',{id:'${c.id}',tab:'record'})">${t('today_view')}</button>`
-        : `<button class="act go" onclick="event.stopPropagation();go('editRecord',{catId:'${c.id}'})">${t('today_do_full')}</button>`;
+        : `<div class="todo-actions">
+            <button class="act go" onclick="event.stopPropagation();go('editRecord',{catId:'${c.id}'})">${t('today_do_full')}</button>
+            <button class="act quick" onclick="event.stopPropagation();quickNormalSave('${c.id}')">${t('quick_normal')}</button>
+          </div>`;
       return `<div class="todo${done?' done':''}" onclick="go('cat',{id:'${c.id}',tab:'record'})">${av}
         <div class="meta"><div class="nm">${esc(c.name)}</div><div class="sub">${fmtDate(todayStr())} ${status}</div>
         <div class="sum7">${esc(summary7(c.id))}</div></div>${btn}</div>`;
@@ -748,8 +774,18 @@ function catReport(c){
   const rrow=(k,v,warn)=>`<div class="rrow"><span class="k">${k}</span><span class="v${warn?' warn':''}">${v}</span></div>`;
   const periodLabel=days===7?t('recent7'):t('rep_30d');
   const neut = c.neutered==='y'?t('neutered_y'):(c.neutered==='n'?t('neutered_n'):D);
+  const rbox=(n,l,warn)=>`<div class="statbox"><div class="n${warn?' warn':''}">${n}</div><div class="l">${l}</div></div>`;
+  const summaryCards=`<div class="repcards">
+    ${rbox(rs.length, t('rep_days'), false)}
+    ${rbox(s.vomit, t('st_vomit'), s.vomit>=2)}
+    ${rbox(s.low, t('st_lowappe'), s.low>=2)}
+    ${rbox(s.lowwater, t('st_lowwater'), false)}
+    ${rbox(s.vet, t('rep_vet'), false)}
+  </div>`;
   return seg + `<div class="report card">
     <div class="rhead"><h2>${esc(c.name)} 🐈</h2><div class="sub">${t('rep_period')}: ${periodLabel} · ${fmtDate(cut)} ~ ${fmtDate(todayStr())}</div></div>
+
+    ${summaryCards}
 
     <h4>${t('rep_basic')}</h4>
     ${rrow(t('f_sex'), SEXEMO(c.sex)+' '+(c.sex==='여아'?t('female'):t('male')), false)}
@@ -799,7 +835,9 @@ function catVet(c){
       ${v.diagnosis?`<div class="b">🩺 ${esc(v.diagnosis)}</div>`:''}
       ${v.prescription?`<div class="b">💊 ${esc(v.prescription)}</div>`:''}
       ${v.next?`<div class="b" style="color:var(--accent)">📅 ${t('next_visit')}: ${fmtDate(v.next)}</div>`:''}</div>`).join('')
-    : '<div class="empty">'+t('vet_empty')+'</div>';
+    : `<div class="startbox"><div class="t">${t('vet_empty')}</div>
+        <div class="s">${esc(t('vet_empty_note'))}</div>
+        <button class="bigbtn" onclick="go('editVet',{catId:'${c.id}'})">${t('vet_add_btn')}</button></div>`;
 }
 
 /* ---------- 프로필 편집 ---------- */
@@ -818,20 +856,20 @@ function renderEditCat(catId, id){
       <div><button class="btn ghost" style="margin:0" onclick="document.getElementById('photoInput').click()">${t('photo_pick')}</button>
       <input type="file" id="photoInput" accept="image/*" style="display:none"></div>
     </div>
-    <label class="fld">${t('f_name')}</label><input type="text" id="f_name" value="${esc(c.name||'')}" placeholder="${t('ph_name')}">
+    <label class="fld">${t('f_name')} <span class="req">${t('req_badge')}</span></label><input type="text" id="f_name" value="${esc(c.name||'')}" placeholder="${t('ph_name')}">
     <label class="fld">${t('f_cat')}</label><select id="f_cat">${opts}</select>
     <div class="row2"><div><label class="fld">${t('f_sex')}</label>
       <select id="f_sex"><option value="남아" ${c.sex==='남아'?'selected':''}>${t('male')}</option><option value="여아" ${c.sex==='여아'?'selected':''}>${t('female')}</option></select></div>
       <div><label class="fld">${t('f_bday')}</label><input type="date" id="f_bday" value="${(c.birthday&&c.birthday.length===10)?c.birthday:''}"><div class="hint">${t('bday_hint')}</div></div></div>
     <div class="row2"><div><label class="fld">${t('f_weight_now')}</label><input type="number" step="0.1" id="f_weight" value="${esc(c.weight||'')}" inputmode="decimal"></div>
       <div><label class="fld">${t('f_breed')}</label><input type="text" id="f_breed" value="${esc(c.breed||'')}" placeholder="${t('ph_breed')}"></div></div>
-    <div class="formsec">${t('reg_sec_health')}</div>
+    <div class="formsec">${t('reg_sec_health')} <span class="opt">${t('opt_badge')}</span></div>
     <label class="fld">${t('f_neutered')}</label>
     <select id="f_neut"><option value="" ${!c.neutered?'selected':''}>${t('neutered_x')}</option><option value="y" ${c.neutered==='y'?'selected':''}>${t('neutered_y')}</option><option value="n" ${c.neutered==='n'?'selected':''}>${t('neutered_n')}</option></select>
     <label class="fld">${t('f_disease')}</label><input type="text" id="f_disease" value="${esc(c.disease||'')}" placeholder="${t('ph_disease')}">
     <label class="fld">${t('f_vet')}</label><input type="text" id="f_vet" value="${esc(c.vet||'')}" placeholder="${t('ph_vet')}">
     <label class="fld">${t('f_care')}</label><div class="recseg" id="careSeg">${careChips}</div>
-    <div class="formsec">${t('reg_sec_extra')}</div>
+    <div class="formsec">${t('reg_sec_extra')} <span class="opt">${t('opt_badge')}</span></div>
     <label class="fld">${t('f_nick')}</label><input type="text" id="f_nick" value="${esc(c.nick||'')}" placeholder="${t('ph_nick')}">
     <label class="fld">${t('f_desc')}</label><textarea id="f_desc" placeholder="${t('ph_desc')}">${esc(c.desc||'')}</textarea>
     <button class="btn primary" id="saveCat">${t('save')}</button>
@@ -887,7 +925,7 @@ function renderEditRecord(catId, id, presetDate){
   const moreFields=['vomit','play'].map(f=>recSeg(f,e[f])).join('');
   const hasMore = !!(e.vomit||e.play||e.weight||e.meds||e.body||ph);
   $('#view').innerHTML=`
-    <label class="fld">${t('f_date')}</label><input type="date" id="r_date" value="${esc(e.date||todayStr())}">
+    <label class="fld">${t('f_date')}</label><input type="date" id="r_date" value="${esc(e.date||todayStr())}"><div class="hint" id="r_datehint"></div>
     <h4 class="recsec">${t('rec_basic')}</h4>
     <label class="fld">${t('f_mood')}</label>
     <div class="moodpick" id="moods">${moods.map(m=>`<button class="${e.mood===m?'on':''}" data-m="${m}">${m}</button>`).join('')}</div>
@@ -910,6 +948,7 @@ function renderEditRecord(catId, id, presetDate){
     </div>
     <button class="btn primary" id="saveR">${t('save')}</button>
     ${editing?`<button class="btn danger" id="delR">${t('del')||'🗑 삭제'}</button>`:''}`;
+  wireDateHint('r_date','r_datehint');
   const mt=$('#moreToggle'), mw=$('#moreWrap');
   mt.onclick=()=>{ const open=mw.style.display!=='none'; mw.style.display=open?'none':'block'; mt.textContent=open?'▾ '+t('rec_more'):'▴ '+t('rec_more_close'); };
   const sel={};
@@ -949,10 +988,11 @@ function renderEditAnniv(catId, id){
   $('#view').innerHTML=`
     <label class="fld">${t('anniv_name')||'기념일 이름'}</label><input type="text" id="a_title" value="${esc(e.title||'')}" placeholder="${t('ph_anniv')||''}">
     <label class="fld">${t('anniv_cat')||'대상 아이'}</label><select id="a_cat">${opts}</select>
-    <label class="fld">${t('f_date')}</label><input type="date" id="a_date" value="${(e.date&&e.date.length===10)?e.date:todayStr()}">
+    <label class="fld">${t('f_date')}</label><input type="date" id="a_date" value="${(e.date&&e.date.length===10)?e.date:todayStr()}"><div class="hint" id="a_datehint"></div>
     <div class="note">${t('anniv_note')||''}</div>
     <button class="btn primary" id="saveA">${t('save')}</button>
     ${editing?`<button class="btn danger" id="delA">${t('del')||'🗑 삭제'}</button>`:''}`;
+  wireDateHint('a_date','a_datehint');
   $('#saveA').onclick=async ()=>{
     const tt=$('#a_title').value.trim(); if(!tt){ alert(t('alert_anniv')||t('alert_name')); return; }
     const obj={ id:id||uid(), catId:$('#a_cat').value, title:tt, date:$('#a_date').value };
@@ -968,15 +1008,16 @@ function renderEditVet(catId, id){
   const editing=!!id; const e=editing? DB.state.vet.find(x=>x.id===id) : {date:todayStr()};
   $('#title').textContent= editing?t('vet_edit'):t('vet_new');
   $('#view').innerHTML=`
-    <label class="fld">${t('f_vdate')}</label><input type="date" id="v_date" value="${esc(e.date||todayStr())}">
+    <label class="fld">${t('f_vdate')}</label><input type="date" id="v_date" value="${esc(e.date||todayStr())}"><div class="hint" id="v_datehint"></div>
     <label class="fld">${t('f_symptom')}</label><input type="text" id="v_sym" value="${esc(e.symptom||'')}" placeholder="${t('ph_symptom')}">
     <label class="fld">${t('f_diagnosis')}</label><input type="text" id="v_diag" value="${esc(e.diagnosis||'')}" placeholder="${t('ph_diagnosis')}">
     <label class="fld">${t('f_prescription')}</label><input type="text" id="v_pre" value="${esc(e.prescription||'')}" placeholder="${t('ph_prescription')}">
     <div class="row2"><div><label class="fld">${t('f_cost')}</label><input type="number" id="v_cost" inputmode="numeric" value="${esc(e.cost||'')}"></div>
-      <div><label class="fld">${t('f_next')}</label><input type="date" id="v_next" value="${esc(e.next||'')}"></div></div>
+      <div><label class="fld">${t('f_next')}</label><input type="date" id="v_next" value="${esc(e.next||'')}"><div class="hint" id="v_nexthint"></div></div></div>
     <label class="fld">${t('f_vmemo')}</label><textarea id="v_memo" placeholder="">${esc(e.memo||'')}</textarea>
     <button class="btn primary" id="saveV">${t('save')}</button>
     ${editing?`<button class="btn danger" id="delV">${t('del')||'🗑 삭제'}</button>`:''}`;
+  wireDateHint('v_date','v_datehint'); wireDateHint('v_next','v_nexthint');
   $('#saveV').onclick=async ()=>{
     const sym=$('#v_sym').value.trim(), diag=$('#v_diag').value.trim();
     if(!sym && !diag){ alert(t('alert_vet')); return; }

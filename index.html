@@ -137,6 +137,8 @@
   label.fld{display:block;margin:13px 0 5px;font-size:15.5px;font-weight:700;color:#6b5a52;font-family:'Apple SD Gothic Neo','Malgun Gothic','Hiragino Sans','Noto Sans JP',sans-serif}
   .hint{font-size:13px;color:#9a8478;margin:4px 2px 0;font-family:'Apple SD Gothic Neo','Malgun Gothic','Hiragino Sans','Noto Sans JP',sans-serif}
   .formsec{font-family:'Jua';font-size:16px;color:var(--accent);margin:22px 2px 2px;padding-top:8px;border-top:1px dashed #f0dfd6}
+  .req{font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:11px;font-weight:700;color:#cf5b5b;background:#fdecec;border-radius:6px;padding:1px 6px;vertical-align:middle;margin-left:2px}
+  .opt{font-family:'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:11px;font-weight:700;color:#a89a8f;background:#f1ece7;border-radius:6px;padding:1px 6px;vertical-align:middle;margin-left:2px}
   .startbox{text-align:center;background:#fffdfb;border:2px dashed #f0c9d6;border-radius:20px;padding:26px 18px;margin-bottom:6px}
   .startbox .t{font-family:'Jua';font-size:19px;color:#6b5a52;margin-bottom:8px}
   .startbox .s{font-size:14px;color:#8a7166;line-height:1.65;white-space:pre-line;word-break:keep-all;overflow-wrap:break-word;max-width:100%;margin-bottom:16px;font-family:'Apple SD Gothic Neo','Malgun Gothic','Hiragino Sans','Noto Sans JP',sans-serif}
@@ -197,6 +199,10 @@
   .calleg span{display:flex;align-items:center;gap:4px}
 
   .statgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+  .repcards{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:10px 0 6px}
+  .repcards .statbox{padding:9px 4px}
+  .repcards .statbox .n{font-size:19px}
+  .repcards .statbox .l{font-size:10.5px;margin-top:1px;word-break:keep-all;line-height:1.2}
   .statbox{background:#faf3ee;border-radius:14px;padding:12px;text-align:center}
   .statbox .n{font-family:'Jua';font-size:24px;color:#6b5a52}
   .statbox .n.warn{color:#cf5b5b}
@@ -230,6 +236,8 @@
   .dchip.todo,.todo .stat.todo{background:#fde9d6;color:#cf8a2b}
   .todo.done{opacity:.95}
   .todo .act.view{background:#eef6ef;color:#3f9d56}
+  .todo-actions{display:flex;flex-direction:column;gap:6px;align-items:stretch;flex:0 0 auto}
+  .todo .act.quick{background:#f4efe9;color:#8a7166;border:1px solid #ecd9cf}
   /* 기록 화면 기본/상세 분리 */
   h4.recsec{font-family:'Jua';font-size:16px;color:#7a6258;margin:18px 2px 2px}
   .moretoggle{display:block;width:100%;background:#fff8f4;border:1px dashed #e6c9bd;color:#a07e6f;
