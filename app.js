@@ -824,7 +824,28 @@ function catReport(c){
   <button class="btn primary noprint" id="repPrint">${t('rep_print')}</button>`;
 }
 function setRep(d){ cur().rep=d; render(); }
-function wireReport(c){ const b=$('#repPrint'); if(b) b.onclick=()=>window.print(); }
+function wireReport(c){ const b=$('#repPrint'); if(b) b.onclick=()=>printReport(); }
+/* 리포트만 깨끗하게 새 창에 담아 인쇄/PDF 저장 (모바일·PWA 포함 안정적으로 동작) */
+function printReport(){
+  const rep=document.querySelector('.report');
+  if(!rep){ try{ window.print(); }catch(e){} return; }
+  const heads=[...document.querySelectorAll('link[rel="stylesheet"],link[rel="preconnect"],style')].map(n=>n.outerHTML).join('\n');
+  let win=null; try{ win=window.open('','_blank'); }catch(e){}
+  if(!win){ try{ window.print(); }catch(e){} return; }  // 팝업 차단 시 기본 인쇄로 폴백
+  const title=t('rep_title').replace(/^[^\wㄱ-힣]+/, '').trim()||'report';
+  win.document.open();
+  win.document.write('<!doctype html><html lang="'+LANG+'"><head><meta charset="utf-8">'+
+    '<meta name="viewport" content="width=device-width,initial-scale=1">'+
+    '<title>'+esc(title)+'</title>'+heads+
+    '<style>body{background:#fff!important;margin:0;padding:16px}.wrap{max-width:560px;margin:0 auto}.report.card{box-shadow:none;border:none}</style>'+
+    '</head><body><div class="wrap"><main>'+rep.outerHTML+'</main></div></body></html>');
+  win.document.close();
+  win.focus();
+  // 스타일/폰트 적용 후 인쇄 (모바일에서 onload 누락 대비 타이머 병행)
+  const fire=()=>{ try{ win.focus(); win.print(); }catch(e){} };
+  win.onload=()=>setTimeout(fire,300);
+  setTimeout(fire,800);
+}
 
 /* 병원 기록 탭 */
 function catVet(c){
