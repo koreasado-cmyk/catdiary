@@ -398,6 +398,7 @@ function back(){ if(stack.length>1){ stack.pop(); render(); } }
 function reset(v,params){ stack=[Object.assign({v:v||'home'},params)]; render(); }
 $('#back').onclick=back;
 $('#gear').onclick=()=>go('settings');
+$('#title').onclick=()=>{ if(cur().v!=='home') reset('home'); };
 
 /* ---------- 테마 ---------- */
 function setTheme(accent,soft){ document.documentElement.style.setProperty('--accent',accent||'#ff8fab'); document.documentElement.style.setProperty('--soft',soft||'#ffe3ec'); }
