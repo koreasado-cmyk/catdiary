@@ -73,8 +73,12 @@ const I18N = {
     sync_note:'클라우드를 켜면 폰·아이패드·PC 어디서 열어도 같은 기록을 봅니다. 켜려면 아래 “고급 설정”에서 Firebase 정보를 넣어주세요. (무료)',
     cloud_help:'• 클라우드를 쓰지 않으면 기록·사진은 지금 이 기기에만 저장됩니다.\n• 클라우드를 켜면 사진까지 가족과 실시간으로 함께 봅니다.',
     room_title:'가족 공유 코드', room_label:'방 코드 (가족이 같은 값을 쓰면 데이터 공유)',
-    room_note:'• 가족끼리만 같은 코드를 쓰세요. 이 코드를 아는 사람은 같은 기록을 볼 수 있어요.\n• 코드는 언제든 바꿀 수 있고, 클라우드를 켰을 때만 공유에 사용됩니다.',
-    export_title:'데이터 백업', export_note:'기록과 사진을 파일(catdiary_backup.json) 하나로 내려받아 보관해요. 기기를 바꾸거나 만약을 대비할 때 좋아요.',
+    room_note:'• 가족끼리만 같은 코드를 쓰세요. 이 코드를 아는 사람은 누구나 같은 기록을 볼 수 있어요.\n• ‘myhome’처럼 쉬운 코드는 피하고, 추측하기 어려운 값(가족만 아는 단어+숫자)을 쓰세요.\n• 코드는 언제든 바꿀 수 있고, 클라우드를 켰을 때만 공유에 사용됩니다.',
+    export_title:'데이터 백업 · 복원', export_note:'기록과 사진을 파일(catdiary_backup.json) 하나로 내려받아 보관해요. 기기를 바꾸거나 만약을 대비할 때 좋아요. 백업 파일은 아래 ‘복원’으로 다시 불러올 수 있어요.',
+    import:'📥 백업 파일 불러오기(복원)',
+    import_confirm:'백업 파일을 불러오면 지금 이 기기의 기록을 덮어씁니다. 계속할까요?',
+    import_done:'복원이 완료되었어요 ✓', import_err:'백업 파일을 읽을 수 없어요. 올바른 catdiary_backup.json 파일인지 확인해 주세요.',
+    aria_back:'뒤로 가기', aria_settings:'설정 열기', aria_add:'추가', aria_addanniv:'기념일 추가', aria_del:'삭제', aria_prevmonth:'이전 달', aria_nextmonth:'다음 달',
     fb_title:'Firebase 연동 (클라우드 DB)',
     fb_setup:'설정법: ① console.firebase.google.com 접속 → 프로젝트 만들기 ② Firestore Database 만들기(테스트 모드) ③ 프로젝트 설정 → 웹앱 추가 → 표시되는 값 복사 ④ 위 칸에 붙여넣기. 자세한 건 README 참고.',
     fb_save:'💾 저장 후 적용', fb_clear:'클라우드 끄기 (로컬만)', export:'📤 데이터 백업(내보내기)',
@@ -161,8 +165,12 @@ const I18N = {
     sync_note:'クラウドをオンにすると、スマホ・iPad・PCどこで開いても同じ記録が見られます。オンにするには下の「詳細設定」でFirebase情報を入力してください。(無料)',
     cloud_help:'• クラウドを使わない場合、記録と写真は今この端末だけに保存されます。\n• クラウドをオンにすると写真まで家族とリアルタイムで共有できます。',
     room_title:'家族共有コード', room_label:'ルームコード(家族が同じ値を使うとデータ共有)',
-    room_note:'• 家族だけで同じコードを使ってください。このコードを知っている人は同じ記録を見られます。\n• コードはいつでも変更でき、クラウドをオンにしたときだけ共有に使われます。',
-    export_title:'データバックアップ', export_note:'記録と写真を1つのファイル(catdiary_backup.json)に保存します。端末を変えるときや万が一に備えて便利です。',
+    room_note:'• 家族だけで同じコードを使ってください。このコードを知っている人は誰でも同じ記録を見られます。\n• ‘myhome’のような簡単なコードは避け、推測されにくい値(家族だけが分かる単語＋数字)を使ってください。\n• コードはいつでも変更でき、クラウドをオンにしたときだけ共有に使われます。',
+    export_title:'データのバックアップ・復元', export_note:'記録と写真を1つのファイル(catdiary_backup.json)に保存します。端末を変えるときや万が一に備えて便利です。バックアップは下の「復元」で読み込めます。',
+    import:'📥 バックアップを読み込む(復元)',
+    import_confirm:'バックアップを読み込むと、今この端末の記録を上書きします。続けますか？',
+    import_done:'復元が完了しました ✓', import_err:'バックアップファイルを読み込めません。正しい catdiary_backup.json か確認してください。',
+    aria_back:'戻る', aria_settings:'設定を開く', aria_add:'追加', aria_addanniv:'記念日を追加', aria_del:'削除', aria_prevmonth:'前の月', aria_nextmonth:'次の月',
     fb_title:'Firebase連携(クラウドDB)',
     fb_setup:'設定方法: ① console.firebase.google.com にアクセス→プロジェクト作成 ② Firestore Database作成(テストモード) ③ プロジェクト設定→Webアプリ追加→表示される値をコピー ④ 上の欄に貼り付け。詳細はREADME参照。',
     fb_save:'💾 保存して適用', fb_clear:'クラウドをオフ(ローカルのみ)', export:'📤 データバックアップ(書き出し)',
@@ -280,6 +288,19 @@ const DB = {
     delete this.photos[id];
     if(this.mode==='cloud'){ const {fs,db}=this.fb; try{ await fs.deleteDoc(fs.doc(db,'rooms',this.room,'photos',id)); }catch(e){} }
     else { LS.removeItem('cd_photo_'+id); }
+  },
+  async importData(obj){
+    if(!obj || !obj.state || typeof obj.state!=='object') throw new Error('invalid backup');
+    this.state = Object.assign(this._emptyState(), obj.state);
+    this._normalize();
+    this.photos = Object.assign({}, obj.photos||{});
+    if(this.mode==='cloud'){ await this._pushAll(); }
+    else {
+      const del=[]; for(let i=0;i<LS.length;i++){ const k=LS.key(i); if(k && k.indexOf('cd_photo_')===0) del.push(k); }
+      del.forEach(k=>LS.removeItem(k));
+      this._saveLocal();
+    }
+    this.onChange && this.onChange();
   }
 };
 
@@ -373,6 +394,8 @@ function render(){
   DB._normalize();
   const c=cur();
   $('#back').style.visibility = stack.length>1 ? 'visible':'hidden';
+  $('#back').setAttribute('aria-label', t('aria_back'));
+  $('#gear').setAttribute('aria-label', t('aria_settings'));
   const old=$('.fab'); if(old) old.remove();
   if(v==='home') return renderHome();
   if(v==='category') return renderCategory(c.cat);
@@ -383,7 +406,7 @@ function render(){
   if(v==='editVet') return renderEditVet(c.catId, c.id);
   if(v==='settings') return renderSettings();
 }
-function addFab(fn){ const b=document.createElement('button'); b.className='fab'; b.textContent='＋'; b.onclick=fn; document.body.appendChild(b); }
+function addFab(fn){ const b=document.createElement('button'); b.className='fab'; b.textContent='＋'; b.setAttribute('aria-label', t('aria_add')); b.onclick=fn; document.body.appendChild(b); }
 
 /* ---------- 홈 ---------- */
 function renderHome(){
@@ -435,7 +458,7 @@ function renderHome(){
   items.sort((x,y)=>x.days-y.days);
   let up = items.length? items.map(it=>{
     const click = it.kind==='b'?`go('cat',{id:'${it.catId}'})`:`go('editAnniv',{id:'${it.id}',catId:'${it.catId}'})`;
-    const x = it.kind==='a'?`<button class="xdel" onclick="event.stopPropagation();delAnnivQuick('${it.id}')">✕</button>`:'';
+    const x = it.kind==='a'?`<button class="xdel" aria-label="${t('aria_del')}" onclick="event.stopPropagation();delAnnivQuick('${it.id}')">✕</button>`:'';
     return `<div class="anniv" onclick="${click}"><div class="dday" style="color:${it.accent}">${ddayLabel(it.days)}</div>
        <div class="info"><div class="t">${esc(it.title)}</div><div class="s">${esc(it.sub)}</div></div>${x}</div>`;
   }).join('') : '<div class="empty">'+t('no_anniv')+'</div>';
@@ -446,7 +469,7 @@ function renderHome(){
     ${todo}
     <h3 class="sec">${t('home_cat')}</h3>
     <div class="grid">${tiles}</div>
-    <div class="sechead"><h3>${t('home_upcoming')}</h3><button class="addmini" onclick="go('editAnniv',{})">＋</button></div>
+    <div class="sechead"><h3>${t('home_upcoming')}</h3><button class="addmini" aria-label="${t('aria_addanniv')}" onclick="go('editAnniv',{})">＋</button></div>
     ${up}
     <div class="note">${t('home_note')}</div>`;
 }
@@ -550,7 +573,7 @@ function catProfile(c){
   return `${hero}
     <div class="card"><div class="nick">💟 ${esc(c.nick||'')}</div><p class="desc" style="margin-top:6px">${esc(c.desc||'')}</p></div>
     ${basic}${health}
-    <div class="sechead"><h3>🎉 ${t('anniv_word')}</h3><button class="addmini" onclick="go('editAnniv',{catId:'${id}'})">＋</button></div>
+    <div class="sechead"><h3>🎉 ${t('anniv_word')}</h3><button class="addmini" aria-label="${t('aria_addanniv')}" onclick="go('editAnniv',{catId:'${id}'})">＋</button></div>
     ${annivBody}
     <button class="btn ghost" onclick="go('editCat',{cat:'${c.cat}',id:'${id}'})">${t('edit_profile')}</button>`;
 }
@@ -616,7 +639,7 @@ function calHtml(c){
     <span><span class="cdot h"></span>${t('cal_legend_h')}</span>
     <span><span class="cdot g"></span>${t('cal_legend_g')}</span></div>`;
   return `<div class="cal"><div class="cal-head">
-      <button id="calPrev">‹</button><div class="mo">${moLabel}</div><button id="calNext">›</button></div>
+      <button id="calPrev" aria-label="${t('aria_prevmonth')}">‹</button><div class="mo">${moLabel}</div><button id="calNext" aria-label="${t('aria_nextmonth')}">›</button></div>
     <div class="cal-grid">${cells}</div>${legend}</div>`;
 }
 function wireCalendar(c){
@@ -948,7 +971,9 @@ function renderSettings(){
     </div>
     <div class="card"><h4>💾 ${t('export_title')}</h4>
       <div class="note" style="margin-top:0">${t('export_note')}</div>
-      <button class="btn ghost" id="s_export">${t('export')}</button></div>
+      <button class="btn ghost" id="s_export">${t('export')}</button>
+      <button class="btn ghost" id="s_import">${t('import')}</button>
+      <input type="file" id="s_importfile" accept="application/json,.json" style="display:none"></div>
     <h3 class="sec">${t('set_advanced')}</h3>
     <details class="adv"><summary>${t('fb_title')}</summary>
       <div class="inner">
@@ -969,6 +994,15 @@ function renderSettings(){
   };
   $('#s_clear').onclick=()=>{ LS.removeItem('cd_fbcfg'); alert(t('to_local')); location.reload(); };
   $('#s_export').onclick=()=>{ const data={state:DB.state,photos:DB.photos}; const blob=new Blob([JSON.stringify(data)],{type:'application/json'}); const u=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=u; a.download='catdiary_backup.json'; a.click(); };
+  $('#s_import').onclick=()=>$('#s_importfile').click();
+  $('#s_importfile').onchange=e=>{
+    const f=e.target.files[0]; if(!f) return;
+    if(!confirm(t('import_confirm'))){ e.target.value=''; return; }
+    const r=new FileReader();
+    r.onload=async ev=>{ try{ const obj=JSON.parse(ev.target.result); await DB.importData(obj); alert(t('import_done')); reset('home'); }catch(err){ console.warn(err); alert(t('import_err')); } e.target.value=''; };
+    r.onerror=()=>{ alert(t('import_err')); e.target.value=''; };
+    r.readAsText(f);
+  };
 }
 
 /* 이미지 리사이즈 (아이패드/사파리 호환: FileReader + canvas) */
