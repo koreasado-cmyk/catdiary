@@ -823,12 +823,18 @@ function renderCatgAdd(){
   setTheme('#ff8fab','#ffe3ec'); $('#title').textContent=t('catg_add');
   $('#back').style.visibility='visible';
   const old=$('.fab'); if(old) old.remove();
+  const CHOICES=['🐾','🏠','🏡','🏢','🌳','🐱','😺','🐈','🐈‍⬛','🐯','🌙','⭐','❤️','🐟','🍼','👑'];
+  let sel='🐾';
+  const btns=CHOICES.map(e=>`<button type="button" class="emoopt${e===sel?' on':''}" data-e="${e}">${e}</button>`).join('');
   $('#view').innerHTML=`
     <label class="fld">${t('catg_name')}</label><input type="text" id="cg_name" placeholder="${t('ph_catg')}">
-    <label class="fld">${t('catg_emoji')}</label><input type="text" id="cg_emo" value="🐾" maxlength="2">
+    <label class="fld">${t('catg_emoji')}</label>
+    <div class="emopick" id="cg_emopick">${btns}</div>
     <button class="btn primary" id="cgSave">${t('add')}</button>`;
+  const opts=$('#cg_emopick').querySelectorAll('.emoopt');
+  opts.forEach(b=>{ b.onclick=()=>{ sel=b.dataset.e; opts.forEach(x=>x.classList.toggle('on',x===b)); }; });
   $('#cgSave').onclick=async ()=>{ const n=$('#cg_name').value.trim(); if(!n){alert(t('alert_name'));return;}
-    DB.state.categories.push({id:uid(),name:n,emoji:$('#cg_emo').value.trim()||'🐾'}); await DB.saveState(); reset('home'); };
+    DB.state.categories.push({id:uid(),name:n,emoji:sel}); await DB.saveState(); reset('home'); };
 }
 
 /* ---------- 설정 ---------- */

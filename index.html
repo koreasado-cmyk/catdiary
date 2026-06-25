@@ -136,6 +136,10 @@
   .moodpick{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
   .moodpick button{font-size:24px;background:#fff;border:2px solid #ecd9cf;border-radius:12px;width:48px;height:48px;cursor:pointer}
   .moodpick button.on{border-color:var(--accent);background:var(--soft)}
+  .emopick{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:6px}
+  .emopick .emoopt{font-size:26px;background:#fff;border:2px solid #ecd9cf;border-radius:14px;height:50px;cursor:pointer;line-height:1;transition:transform .12s}
+  .emopick .emoopt:active{transform:scale(.92)}
+  .emopick .emoopt.on{border-color:var(--accent);background:var(--soft);box-shadow:0 2px 8px rgba(255,143,171,.3)}
   .recfield{margin-top:14px}
   .recfield .rl{font-size:15px;font-weight:700;color:#8a7166;margin-bottom:2px}
   .recseg{display:flex;gap:6px;flex-wrap:wrap}
@@ -234,7 +238,7 @@
 <div class="syncpill" id="pill">저장됨 ✓</div>
 
 <script>
-window.__SEED__ = {"categories": [{"id": "home", "name": "집냥이", "emoji": "🏠"}, {"id": "street", "name": "길냥이", "emoji": "🐾"}], "cats": [], "anniversaries": [], "diary": [], "vet": []};
+window.__SEED__ = {"categories": [], "cats": [], "anniversaries": [], "diary": [], "vet": []};
 window.__SEED_PHOTOS__ = {};
 </script>
 <script src="app.js"></script>
