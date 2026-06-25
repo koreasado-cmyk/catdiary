@@ -13,6 +13,8 @@ const I18N = {
     home_start_title:'먼저 카테고리를 만들어 주세요 🐾',
     home_start_note:'예) 우리집 냥이, 본가 냥이, 회사 길냥이\n카테고리 안에서 고양이를 등록하고 매일 건강 기록을 남길 수 있어요.',
     home_start_btn:'＋ 처음 시작하기',
+    home_addcat_title:'이제 우리 아이를 등록해 주세요 🐱',
+    home_addcat_note:'사진·이름만 넣어도 바로 시작! 등록하면 오늘부터 30초 건강 기록을 남길 수 있어요.',
     birthday_word:'생일',
     cat_empty:'아직 등록된 아이가 없어요 🐾',
     cat_register_btn:'＋ 아이 등록하기',
@@ -97,6 +99,8 @@ const I18N = {
     home_start_title:'まずカテゴリーを作りましょう 🐾',
     home_start_note:'例) うちの猫、実家の猫、会社の野良猫\nカテゴリーの中で猫を登録し、毎日健康記録を残せます。',
     home_start_btn:'＋ はじめる',
+    home_addcat_title:'次にうちの子を登録しましょう 🐱',
+    home_addcat_note:'写真と名前だけでもOK！登録すれば今日から30秒の健康記録を残せます。',
     birthday_word:'誕生日',
     cat_empty:'まだ登録された猫がいません 🐾',
     cat_register_btn:'＋ 猫を登録する',
@@ -367,12 +371,18 @@ function renderHome(){
   }).join('');
   tiles += `<div class="tile add" onclick="go('editCatg')"><div class="emo">＋</div><div class="nm">${t('catg_add_tile')}</div></div>`;
 
-  // 첫 사용자 안내 (카테고리가 없을 때)
+  // 첫 사용자 안내
   let startGuide='';
   if(!cats.length){
+    // 1단계: 카테고리 만들기
     startGuide=`<div class="startbox"><div class="t">${t('home_start_title')}</div>
       <div class="s">${esc(t('home_start_note'))}</div>
       <button class="bigbtn" onclick="go('editCatg')">${t('home_start_btn')}</button></div>`;
+  } else if(!DB.state.cats.length){
+    // 2단계: 고양이 등록하기
+    startGuide=`<div class="startbox"><div class="t">${t('home_addcat_title')}</div>
+      <div class="s">${esc(t('home_addcat_note'))}</div>
+      <button class="bigbtn" onclick="go('editCat',{cat:'${cats[0].id}'})">${t('cat_register_btn')}</button></div>`;
   }
 
   // 오늘 기록
@@ -410,10 +420,10 @@ function renderHome(){
 
   $('#view').innerHTML=`
     ${startGuide}
+    ${alerts}
+    ${todo}
     <h3 class="sec">${t('home_cat')}</h3>
     <div class="grid">${tiles}</div>
-    ${todo}
-    ${alerts}
     <div class="sechead"><h3>${t('home_upcoming')}</h3><button class="addmini" onclick="go('editAnniv',{})">＋</button></div>
     ${up}
     <div class="note">${t('home_note')}</div>`;

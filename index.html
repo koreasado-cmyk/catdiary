@@ -10,6 +10,10 @@
 <meta name="apple-mobile-web-app-title" content="냥코수첩">
 <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><rect width='180' height='180' rx='40' fill='%23ffd6e4'/><text x='50%25' y='54%25' font-size='110' text-anchor='middle' dominant-baseline='central'>🐈</text></svg>">
 <title>냥코수첩 · 고양이 건강 다이어리 🐈</title>
+<meta name="description" content="냥코수첩 - 매일 30초 고양이 건강 기록(식사·물·구토·배변·체중·약)으로 병원 가기 전 건강 변화를 한눈에 정리하는 다이어리. 가족과 공유하고 병원 제출용 요약도 만들 수 있어요.">
+<meta property="og:title" content="냥코수첩 · 고양이 건강 다이어리">
+<meta property="og:description" content="매일 30초 고양이 건강 기록으로 병원 상담이 쉬워집니다. 식사·물·구토·배변·체중·약 기록 + 병원 제출용 요약.">
+<meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Jua&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -132,7 +136,7 @@
   .formsec{font-family:'Jua';font-size:16px;color:var(--accent);margin:22px 2px 2px;padding-top:8px;border-top:1px dashed #f0dfd6}
   .startbox{text-align:center;background:#fffdfb;border:2px dashed #f0c9d6;border-radius:20px;padding:26px 18px;margin-bottom:6px}
   .startbox .t{font-family:'Jua';font-size:19px;color:#6b5a52;margin-bottom:8px}
-  .startbox .s{font-size:14px;color:#8a7166;line-height:1.65;white-space:pre-line;margin-bottom:16px;font-family:'Apple SD Gothic Neo','Malgun Gothic','Hiragino Sans','Noto Sans JP',sans-serif}
+  .startbox .s{font-size:14px;color:#8a7166;line-height:1.65;white-space:pre-line;word-break:keep-all;overflow-wrap:break-word;max-width:100%;margin-bottom:16px;font-family:'Apple SD Gothic Neo','Malgun Gothic','Hiragino Sans','Noto Sans JP',sans-serif}
   .bigbtn{display:inline-block;background:var(--accent);color:#fff;border:none;border-radius:14px;padding:13px 24px;font-family:'Jua';font-size:16px;cursor:pointer;box-shadow:0 4px 12px rgba(255,120,150,.35)}
   input[type=text],input[type=date],input[type=number],select,textarea{
     width:100%;font-family:inherit;font-size:16px;color:#5a4a42;border:1px solid #ecd9cf;
@@ -200,7 +204,7 @@
     background:#5a4a42;color:#fff;font-size:13px;padding:7px 14px;border-radius:999px;opacity:0;
     transition:.3s;z-index:30;pointer-events:none}
   .syncpill.show{opacity:.92}
-  .note{font-size:13.5px;color:#7c655a;line-height:1.65;background:var(--soft);border-radius:12px;padding:12px;margin-top:10px;white-space:pre-line;font-family:'Apple SD Gothic Neo','Hiragino Sans','Noto Sans JP',sans-serif}
+  .note{font-size:13.5px;color:#7c655a;line-height:1.65;background:var(--soft);border-radius:12px;padding:12px;margin-top:10px;white-space:pre-line;word-break:keep-all;overflow-wrap:break-word;max-width:100%;font-family:'Apple SD Gothic Neo','Hiragino Sans','Noto Sans JP',sans-serif}
   .status{font-size:13px;padding:6px 10px;border-radius:999px;display:inline-block;margin-top:6px}
   .status.cloud{background:#dff3e3;color:#3f9d56}
   .status.local{background:#fde9d6;color:#cf8a2b}
