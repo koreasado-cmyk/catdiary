@@ -24,7 +24,7 @@ const I18N = {
     reg_sec_basic:'기본 정보', reg_sec_health:'건강 정보', reg_sec_extra:'추가 메모',
     bday_hint:'예) 2022.03.15',
     tab_profile:'프로필', tab_record:'건강기록', tab_stats:'통계', tab_report:'리포트', tab_vet:'병원',
-    edit_profile:'✏️ 프로필 수정', photo_pick:'📷 사진 선택',
+    edit_profile:'✏️ 프로필 수정', photo_pick:'🖼 사진 선택', photo_take:'📷 사진 촬영',
     f_name:'이름', f_cat:'카테고리', f_sex:'성별', male:'남아', female:'여아',
     f_bday:'생일', f_nick:'애칭', f_desc:'소개',
     f_neutered:'중성화', neutered_y:'완료', neutered_n:'안 함', neutered_x:'미설정',
@@ -116,7 +116,7 @@ const I18N = {
     reg_sec_basic:'基本情報', reg_sec_health:'健康情報', reg_sec_extra:'追加メモ',
     bday_hint:'例) 2022.03.15',
     tab_profile:'プロフィール', tab_record:'健康記録', tab_stats:'統計', tab_report:'レポート', tab_vet:'病院',
-    edit_profile:'✏️ プロフィール編集', photo_pick:'📷 写真を選択',
+    edit_profile:'✏️ プロフィール編集', photo_pick:'🖼 写真を選択', photo_take:'📷 写真を撮る',
     f_name:'名前', f_cat:'カテゴリー', f_sex:'性別', male:'男の子', female:'女の子',
     f_bday:'誕生日', f_nick:'愛称', f_desc:'紹介',
     f_neutered:'去勢・避妊', neutered_y:'済み', neutered_n:'未', neutered_x:'未設定',
@@ -844,8 +844,12 @@ function renderEditRecord(catId, id, presetDate){
       <div class="recfield"><div class="rl">${t('f_meds')}</div><input type="text" id="r_meds" value="${esc(e.meds||'')}" placeholder="${t('ph_meds')}"></div>
       <div class="photo-pick" style="margin-top:14px">
         <div class="pv" id="pv" style="${ph?`background-image:url('${ph}')`:''}">${ph?'':'📷'}</div>
-        <div><button class="btn ghost" style="margin:0" onclick="document.getElementById('rphoto').click()">${t('photo_pick')}</button>
-        <input type="file" id="rphoto" accept="image/*" style="display:none"></div>
+        <div class="photo-btns">
+          <button type="button" class="btn ghost" style="margin:0" onclick="document.getElementById('rphotoCam').click()">${t('photo_take')}</button>
+          <button type="button" class="btn ghost" style="margin:0" onclick="document.getElementById('rphoto').click()">${t('photo_pick')}</button>
+          <input type="file" id="rphotoCam" accept="image/*" capture="environment" style="display:none">
+          <input type="file" id="rphoto" accept="image/*" style="display:none">
+        </div>
       </div>
       <label class="fld">${t('f_memo')}</label><textarea id="r_body" placeholder="${t('ph_memo')}">${esc(e.body||'')}</textarea>
     </div>
@@ -863,7 +867,9 @@ function renderEditRecord(catId, id, presetDate){
   let mood=e.mood||'';
   $('#moods').querySelectorAll('button').forEach(b=>b.onclick=()=>{ if(mood===b.dataset.m){mood='';b.classList.remove('on');} else {mood=b.dataset.m; $('#moods').querySelectorAll('button').forEach(x=>x.classList.remove('on')); b.classList.add('on');} });
   let newPhoto=null;
-  $('#rphoto').onchange=ev=>{ const f=ev.target.files[0]; if(!f)return; resizeImage(f,720,d=>{ newPhoto=d; const pv=$('#pv'); pv.style.backgroundImage=`url('${d}')`; pv.textContent=''; }); };
+  const onPhoto=ev=>{ const f=ev.target.files[0]; if(!f)return; resizeImage(f,720,d=>{ newPhoto=d; const pv=$('#pv'); pv.style.backgroundImage=`url('${d}')`; pv.textContent=''; }); ev.target.value=''; };
+  $('#rphoto').onchange=onPhoto;
+  $('#rphotoCam').onchange=onPhoto;
   $('#saveR').onclick=async ()=>{
     const obj={ id:rid, catId, date:$('#r_date').value||todayStr(), mood,
       condition:sel.condition||'', meal:sel.meal||'', water:sel.water||'', poop:sel.poop||'', pee:sel.pee||'', vomit:sel.vomit||'', play:sel.play||'',
