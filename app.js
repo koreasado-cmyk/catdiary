@@ -3,7 +3,7 @@
 /* ---------- 다국어 (i18n) ---------- */
 const I18N = {
   ko:{
-    appTitle:'🐱😺 냥코수첩 😸😻', count:'마리',
+    appTitle:'냥코수첩', count:'마리',
     home_cat:'🐾 카테고리', catg_add_tile:'카테고리 추가',
     home_today:'📝 오늘 기록', today_done:'오늘 기록 완료', today_do:'기록하기',
     today_do_full:'오늘 건강 기록하기', today_view:'오늘 기록 보기', today_status_done:'기록 완료', today_status_todo:'아직 기록 전',
@@ -77,7 +77,7 @@ const I18N = {
     }
   },
   ja:{
-    appTitle:'🐱😺 ニャンコ手帳 😸😻', count:'匹',
+    appTitle:'ニャンコ手帳', count:'匹',
     home_cat:'🐾 カテゴリー', catg_add_tile:'カテゴリー追加',
     home_today:'📝 今日の記録', today_done:'今日の記録 完了', today_do:'記録する',
     today_do_full:'今日の健康を記録', today_view:'今日の記録を見る', today_status_done:'記録済み', today_status_todo:'まだ未記録',
@@ -257,6 +257,8 @@ const DB = {
 
 /* ---------- 유틸 ---------- */
 const $ = s=>document.querySelector(s);
+const HOME_TITLE_HTML = (()=>{ const el=document.querySelector('#title'); return el?el.innerHTML:''; })();
+function setHomeTitle(){ const el=$('#title'); if(HOME_TITLE_HTML.indexOf('cavatar')>=0){ el.innerHTML=HOME_TITLE_HTML; const tx=$('#titletext'); if(tx) tx.textContent=t('appTitle'); } else { el.textContent=t('appTitle'); } }
 let pillTmr; function toast(msg){ const p=$('#pill'); if(msg)p.textContent=msg; p.classList.add('show'); clearTimeout(pillTmr); pillTmr=setTimeout(()=>p.classList.remove('show'),1200); }
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
 function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -335,7 +337,7 @@ function addFab(fn){ const b=document.createElement('button'); b.className='fab'
 /* ---------- 홈 ---------- */
 function renderHome(){
   setTheme('#ff8fab','#ffe3ec');
-  $('#title').textContent=t('appTitle');
+  setHomeTitle();
   const cats=DB.state.categories;
   let tiles=cats.map(cat=>{
     const n=catsIn(cat.id).length;
