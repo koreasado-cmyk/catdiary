@@ -545,6 +545,7 @@ function setTab(tab){ cur().tab=tab; render(); }
 
 function catProfile(c){
   const id=c.id; const ph=DB.photos[id];
+  const editBtn = `<button class="btn ghost" style="margin:10px 0 12px" onclick="go('editCat',{cat:'${c.cat}',id:'${id}'})">${t('edit_profile')}</button>`;
   const hero = ph ? `<div class="hero"><img src="${ph}"><div class="cap"><h2>${esc(c.name)}</h2>
       <div class="badges"><span class="badge">${SEXEMO(c.sex)} ${c.sex==='여아'?t('female'):t('male')}</span>
       <span class="badge">🎂 ${fmtBday(c.birthday)}</span>${c.star?`<span class="badge">✨ ${esc(c.star)}</span>`:''}</div></div></div>`
@@ -571,11 +572,11 @@ function catProfile(c){
       <div class="info"><div class="t">${esc(a.title)}</div><div class="s">✨ ${fmtBday(a.date)}</div></div></div>`).join('')
     : '<div class="empty">'+t('anniv_empty')+'</div>';
   return `${hero}
+    ${editBtn}
     <div class="card"><div class="nick">💟 ${esc(c.nick||'')}</div><p class="desc" style="margin-top:6px">${esc(c.desc||'')}</p></div>
     ${basic}${health}
     <div class="sechead"><h3>🎉 ${t('anniv_word')}</h3><button class="addmini" aria-label="${t('aria_addanniv')}" onclick="go('editAnniv',{catId:'${id}'})">＋</button></div>
-    ${annivBody}
-    <button class="btn ghost" onclick="go('editCat',{cat:'${c.cat}',id:'${id}'})">${t('edit_profile')}</button>`;
+    ${annivBody}`;
 }
 
 /* 건강기록 탭: 목록 / 캘린더 */
@@ -797,7 +798,7 @@ function renderEditCat(catId, id){
     else DB.state.cats.push(obj);
     await DB.saveState();
     if(newPhoto) await DB.setPhoto(obj.id,newPhoto);
-    reset('category',{cat:obj.cat});
+    reset('cat',{id:obj.id,tab:'profile'});
   };
   if(editing) $('#delCat').onclick=async ()=>{
     if(!confirm(t('confirm_delcat').replace('{name}',c.name))) return;
