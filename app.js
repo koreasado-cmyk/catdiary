@@ -1,9 +1,9 @@
-/* ===== 냥코수첩 · 고양이 건강 다이어리 ===== */
+/* ===== 냥코다이어리 · 고양이 건강 다이어리 ===== */
 
 /* ---------- 다국어 (i18n) ---------- */
 const I18N = {
   ko:{
-    appTitle:'냥코수첩', count:'마리',
+    appTitle:'냥코다이어리', count:'마리',
     home_cat:'🐾 카테고리', catg_add_tile:'카테고리 추가',
     home_today:'📝 오늘 기록', today_done:'오늘 기록 완료', today_do:'기록하기',
     today_do_full:'오늘 건강 기록하기', today_view:'오늘 기록 보기', today_status_done:'기록 완료', today_status_todo:'아직 기록 전',
@@ -12,9 +12,11 @@ const I18N = {
     home_note:'우리 고양이 건강 변화, 병원 가기 전에 한눈에 정리하세요. 매일 30초 기록하면 병원 상담이 쉬워져요. 설정(⚙)에서 클라우드 연동·언어를 바꿀 수 있어요.',
     home_start_title:'먼저 카테고리를 만들어 주세요 🐾',
     home_start_note:'예) 우리집 냥이, 본가 냥이, 회사 길냥이\n카테고리 안에서 고양이를 등록하고 매일 건강 기록을 남길 수 있어요.',
-    home_start_btn:'＋ 처음 시작하기',
-    home_addcat_title:'이제 우리 아이를 등록해 주세요 🐱',
-    home_addcat_note:'사진·이름만 넣어도 바로 시작! 등록하면 오늘부터 30초 건강 기록을 남길 수 있어요.',
+    home_start_btn:'＋ 우리 아이 등록하기',
+    home_addcat_title:'우리 아이를 등록해 주세요 🐱',
+    home_addcat_note:'이름만 입력해도 바로 시작! 식사·물·배변·구토·체중을 매일 30초만 기록하면 병원 상담용 요약이 자동으로 정리돼요.',
+    default_catg:'우리집 냥이',
+    sum7_norec:'아직 기록 없음', sum7_recorded:'일 기록',
     birthday_word:'생일',
     cat_empty:'아직 등록된 아이가 없어요 🐾',
     cat_register_btn:'＋ 아이 등록하기',
@@ -55,7 +57,7 @@ const I18N = {
     unit_times:'회', unit_days:'일',
     rep_title:'🏥 병원 제출용 요약', rep_print:'🖨 인쇄 / PDF 저장', rep_30d:'최근 30일',
     rep_period:'기간', rep_summary:'요약', rep_events:'증상 기록', rep_meds:'복용약', rep_vet:'병원 방문', rep_weight:'몸무게',
-    rep_none:'특이사항 없음', rep_made_pre:'냥코수첩에서 작성 · ', rep_records:'기록 수',
+    rep_none:'특이사항 없음', rep_made_pre:'냥코다이어리에서 작성 · ', rep_records:'기록 수',
     vet_new:'병원 기록 추가', vet_edit:'병원 기록 수정', vet_empty:'병원 방문을 기록해 보세요 🏥',
     f_vdate:'방문일', f_symptom:'증상', f_diagnosis:'진단', f_prescription:'처방', f_cost:'진료비(원)', f_next:'다음 방문일', f_vmemo:'메모/검사결과',
     ph_symptom:'예) 이틀째 구토, 식욕저하', ph_diagnosis:'예) 위장염 의심', ph_prescription:'예) 항구토제 3일분',
@@ -89,7 +91,7 @@ const I18N = {
     }
   },
   ja:{
-    appTitle:'ニャンコ手帳', count:'匹',
+    appTitle:'ニャンコダイアリー', count:'匹',
     home_cat:'🐾 カテゴリー', catg_add_tile:'カテゴリー追加',
     home_today:'📝 今日の記録', today_done:'今日の記録 完了', today_do:'記録する',
     today_do_full:'今日の健康を記録', today_view:'今日の記録を見る', today_status_done:'記録済み', today_status_todo:'まだ未記録',
@@ -98,9 +100,11 @@ const I18N = {
     home_note:'うちの子の健康の変化を、病院に行く前にひと目で整理。毎日30秒の記録で診察相談がラクになります。設定(⚙)でクラウド連携や言語を変更できます。',
     home_start_title:'まずカテゴリーを作りましょう 🐾',
     home_start_note:'例) うちの猫、実家の猫、会社の野良猫\nカテゴリーの中で猫を登録し、毎日健康記録を残せます。',
-    home_start_btn:'＋ はじめる',
-    home_addcat_title:'次にうちの子を登録しましょう 🐱',
-    home_addcat_note:'写真と名前だけでもOK！登録すれば今日から30秒の健康記録を残せます。',
+    home_start_btn:'＋ うちの子を登録する',
+    home_addcat_title:'うちの子を登録しましょう 🐱',
+    home_addcat_note:'名前だけでもすぐ開始！食事・水・排泄・嘔吐・体重を毎日30秒記録すれば、診察相談用のまとめが自動で整理されます。',
+    default_catg:'うちの猫',
+    sum7_norec:'まだ記録なし', sum7_recorded:'日記録',
     birthday_word:'誕生日',
     cat_empty:'まだ登録された猫がいません 🐾',
     cat_register_btn:'＋ 猫を登録する',
@@ -141,7 +145,7 @@ const I18N = {
     unit_times:'回', unit_days:'日',
     rep_title:'🏥 病院提出用まとめ', rep_print:'🖨 印刷 / PDF保存', rep_30d:'最近30日',
     rep_period:'期間', rep_summary:'まとめ', rep_events:'症状の記録', rep_meds:'服用薬', rep_vet:'通院', rep_weight:'体重',
-    rep_none:'特記事項なし', rep_made_pre:'ニャンコ手帳で作成 · ', rep_records:'記録数',
+    rep_none:'特記事項なし', rep_made_pre:'ニャンコダイアリーで作成 · ', rep_records:'記録数',
     vet_new:'病院記録の追加', vet_edit:'病院記録の編集', vet_empty:'通院を記録してみましょう 🏥',
     f_vdate:'受診日', f_symptom:'症状', f_diagnosis:'診断', f_prescription:'処方', f_cost:'診療費(円)', f_next:'次回受診日', f_vmemo:'メモ/検査結果',
     ph_symptom:'例) 2日続けて嘔吐、食欲低下', ph_diagnosis:'例) 胃腸炎の疑い', ph_prescription:'例) 制吐剤3日分',
@@ -312,6 +316,29 @@ function recWarns(e){
   if(e.meal==='little'||e.meal==='none') w.push('meal');
   return w;
 }
+/* 최근 7일 건강 요약 (홈 카드용 한 줄) */
+function summary7(catId){
+  const cut=daysAgoStr(7);
+  const rs=recsOf(catId).filter(e=>(e.date||'')>=cut).sort((a,b)=>(a.date||'').localeCompare(b.date||''));
+  if(!rs.length) return t('recent7')+' · '+t('sum7_norec');
+  let vomit=0,loose=0,low=0,lowwater=0;
+  rs.forEach(e=>{ if(e.vomit==='yes')vomit++; if(e.poop==='loose'||e.poop==='constip')loose++; if(e.meal==='little'||e.meal==='none')low++; if(e.water==='little')lowwater++; });
+  const parts=[];
+  if(vomit) parts.push(`${t('st_vomit')} ${vomit}${t('unit_times')}`);
+  if(loose) parts.push(`${t('st_loose')} ${loose}${t('unit_times')}`);
+  if(low) parts.push(`${t('st_lowappe')} ${low}${t('unit_days')}`);
+  if(lowwater) parts.push(`${t('st_lowwater')} ${lowwater}${t('unit_days')}`);
+  const ws=rs.filter(e=>e.weight!=='' && e.weight!=null).map(e=>parseFloat(e.weight)).filter(n=>!isNaN(n));
+  if(ws.length>=2){ const d=ws[ws.length-1]-ws[0]; if(Math.abs(d)>=0.1) parts.push(`${t('st_wchange')} ${d>0?'+':''}${d.toFixed(1)}kg`); }
+  if(!parts.length) return `${t('recent7')} · ${t('rep_none')} (${rs.length}${t('unit_days')})`;
+  return `${t('recent7')} · ${parts.join(' · ')}`;
+}
+/* '우리 아이 등록' 시작 — 카테고리가 없으면 기본 카테고리 자동 생성 */
+function startRegister(){
+  let cat=DB.state.categories[0];
+  if(!cat){ cat={id:uid(),name:t('default_catg'),emoji:'🏠'}; DB.state.categories.push(cat); DB.saveState(); }
+  go('editCat',{cat:cat.id});
+}
 function catAlert(catId){
   const cut=daysAgoStr(7); const rs=recsOf(catId).filter(e=>(e.date||'')>=cut);
   let vomit=0,loose=0,low=0,pee=0;
@@ -371,18 +398,12 @@ function renderHome(){
   }).join('');
   tiles += `<div class="tile add" onclick="go('editCatg')"><div class="emo">＋</div><div class="nm">${t('catg_add_tile')}</div></div>`;
 
-  // 첫 사용자 안내
+  // 첫 사용자 안내 — 카테고리보다 '우리 아이 등록'을 먼저
   let startGuide='';
-  if(!cats.length){
-    // 1단계: 카테고리 만들기
-    startGuide=`<div class="startbox"><div class="t">${t('home_start_title')}</div>
-      <div class="s">${esc(t('home_start_note'))}</div>
-      <button class="bigbtn" onclick="go('editCatg')">${t('home_start_btn')}</button></div>`;
-  } else if(!DB.state.cats.length){
-    // 2단계: 고양이 등록하기
+  if(!DB.state.cats.length){
     startGuide=`<div class="startbox"><div class="t">${t('home_addcat_title')}</div>
       <div class="s">${esc(t('home_addcat_note'))}</div>
-      <button class="bigbtn" onclick="go('editCat',{cat:'${cats[0].id}'})">${t('cat_register_btn')}</button></div>`;
+      <button class="bigbtn" onclick="startRegister()">${t('home_start_btn')}</button></div>`;
   }
 
   // 오늘 기록
@@ -397,7 +418,8 @@ function renderHome(){
         ? `<button class="act view" onclick="event.stopPropagation();go('cat',{id:'${c.id}',tab:'record'})">${t('today_view')}</button>`
         : `<button class="act go" onclick="event.stopPropagation();go('editRecord',{catId:'${c.id}'})">${t('today_do_full')}</button>`;
       return `<div class="todo${done?' done':''}" onclick="go('cat',{id:'${c.id}',tab:'record'})">${av}
-        <div class="meta"><div class="nm">${esc(c.name)}</div><div class="sub">${fmtDate(todayStr())} ${status}</div></div>${btn}</div>`;
+        <div class="meta"><div class="nm">${esc(c.name)}</div><div class="sub">${fmtDate(todayStr())} ${status}</div>
+        <div class="sum7">${esc(summary7(c.id))}</div></div>${btn}</div>`;
     }).join('');
   }
 
