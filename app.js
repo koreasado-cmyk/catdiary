@@ -1,9 +1,9 @@
-/* ===== 냥로그 · 고양이 건강 다이어리 ===== */
+/* ===== 냥코수첩 · 고양이 건강 다이어리 ===== */
 
 /* ---------- 다국어 (i18n) ---------- */
 const I18N = {
   ko:{
-    appTitle:'키코다이어리 🐈', count:'마리',
+    appTitle:'🐱😺 냥코수첩 😸😻', count:'마리',
     home_cat:'🐾 카테고리', catg_add_tile:'카테고리 추가',
     home_today:'📝 오늘 기록', today_done:'오늘 기록 완료', today_do:'기록하기',
     today_do_full:'오늘 건강 기록하기', today_view:'오늘 기록 보기', today_status_done:'기록 완료', today_status_todo:'아직 기록 전',
@@ -46,7 +46,7 @@ const I18N = {
     unit_times:'회', unit_days:'일',
     rep_title:'🏥 병원 제출용 요약', rep_print:'🖨 인쇄 / PDF 저장', rep_30d:'최근 30일',
     rep_period:'기간', rep_summary:'요약', rep_events:'증상 기록', rep_meds:'복용약', rep_vet:'병원 방문', rep_weight:'몸무게',
-    rep_none:'특이사항 없음', rep_made_pre:'냥로그에서 작성 · ', rep_records:'기록 수',
+    rep_none:'특이사항 없음', rep_made_pre:'냥코수첩에서 작성 · ', rep_records:'기록 수',
     vet_new:'병원 기록 추가', vet_edit:'병원 기록 수정', vet_empty:'병원 방문을 기록해 보세요 🏥',
     f_vdate:'방문일', f_symptom:'증상', f_diagnosis:'진단', f_prescription:'처방', f_cost:'진료비(원)', f_next:'다음 방문일', f_vmemo:'메모/검사결과',
     ph_symptom:'예) 이틀째 구토, 식욕저하', ph_diagnosis:'예) 위장염 의심', ph_prescription:'예) 항구토제 3일분',
@@ -77,7 +77,7 @@ const I18N = {
     }
   },
   ja:{
-    appTitle:'キコダイアリー 🐈', count:'匹',
+    appTitle:'🐱😺 ニャンコ手帳 😸😻', count:'匹',
     home_cat:'🐾 カテゴリー', catg_add_tile:'カテゴリー追加',
     home_today:'📝 今日の記録', today_done:'今日の記録 完了', today_do:'記録する',
     today_do_full:'今日の健康を記録', today_view:'今日の記録を見る', today_status_done:'記録済み', today_status_todo:'まだ未記録',
@@ -120,7 +120,7 @@ const I18N = {
     unit_times:'回', unit_days:'日',
     rep_title:'🏥 病院提出用まとめ', rep_print:'🖨 印刷 / PDF保存', rep_30d:'最近30日',
     rep_period:'期間', rep_summary:'まとめ', rep_events:'症状の記録', rep_meds:'服用薬', rep_vet:'通院', rep_weight:'体重',
-    rep_none:'特記事項なし', rep_made_pre:'ニャンログで作成 · ', rep_records:'記録数',
+    rep_none:'特記事項なし', rep_made_pre:'ニャンコ手帳で作成 · ', rep_records:'記録数',
     vet_new:'病院記録の追加', vet_edit:'病院記録の編集', vet_empty:'通院を記録してみましょう 🏥',
     f_vdate:'受診日', f_symptom:'症状', f_diagnosis:'診断', f_prescription:'処方', f_cost:'診療費(円)', f_next:'次回受診日', f_vmemo:'メモ/検査結果',
     ph_symptom:'例) 2日続けて嘔吐、食欲低下', ph_diagnosis:'例) 胃腸炎の疑い', ph_prescription:'例) 制吐剤3日分',
