@@ -6,6 +6,7 @@ const I18N = {
     appTitle:'키코다이어리 🐈', count:'마리',
     home_cat:'🐾 카테고리', catg_add_tile:'카테고리 추가',
     home_today:'📝 오늘 기록', today_done:'오늘 기록 완료', today_do:'기록하기',
+    today_do_full:'오늘 건강 기록하기', today_view:'오늘 기록 보기', today_status_done:'기록 완료', today_status_todo:'아직 기록 전',
     home_alert:'⚠️ 관찰이 필요해요',
     home_upcoming:'🎉 다가오는 생일 · 기념일', no_anniv:'등록된 기념일이 없어요',
     home_note:'카테고리를 눌러 아이를 등록하면, 매일 30초 건강 기록과 병원 제출용 요약을 만들 수 있어요. 설정(⚙)에서 클라우드 연동·언어를 바꿀 수 있어요.',
@@ -32,6 +33,8 @@ const I18N = {
     alert_anniv:'이름을 입력해 주세요', anniv_common:'공통 (특정 아이 없음)', anniv_cat:'대상 아이',
     f_date:'날짜', f_mood:'기분',
     rec_new:'오늘 기록', rec_edit:'기록 수정', rec_empty:'아직 기록이 없어요.<br>아래 ＋ 로 오늘을 기록해요 ✍️',
+    rec_basic:'기본 건강 체크', rec_more:'자세히 기록하기 (구토·놀이·몸무게·약·사진·메모)', rec_more_close:'간단히 보기',
+    rel_today:'오늘', rel_yesterday:'어제',
     view_list:'목록', view_cal:'캘린더',
     f_condition:'😺 컨디션', f_meal:'🍚 식사', f_water:'💧 물', f_poop:'💩 대변', f_pee:'🚽 소변', f_vomit:'🤮 구토', f_play:'🧶 놀이',
     f_weight:'⚖️ 몸무게(kg)', f_meds:'💊 약(투약 메모)', f_memo:'📝 메모',
@@ -49,10 +52,15 @@ const I18N = {
     ph_symptom:'예) 이틀째 구토, 식욕저하', ph_diagnosis:'예) 위장염 의심', ph_prescription:'예) 항구토제 3일분',
     next_visit:'다음 방문', alert_vet:'증상이나 진단을 입력해 주세요', confirm_delvet:'이 병원 기록을 삭제할까요?',
     catg_add:'카테고리 추가', catg_name:'카테고리 이름', ph_catg:'예) 회사 길냥이, 시골집 냥이', catg_emoji:'이모지',
-    settings:'설정 ⚙', lang_title:'언어', sync_title:'동기화 상태',
+    settings:'설정 ⚙', lang_title:'언어',
+    set_general:'일반 설정', set_advanced:'⚙ 고급 설정 (클라우드 직접 연동)',
+    sync_title:'클라우드 동기화', sync_state:'현재 저장 방식',
     sync_cloud:'● 클라우드 동기화 켜짐', sync_local:'● 이 기기에만 저장 중 (로컬)',
-    sync_note:'클라우드를 켜면 폰·아이패드·PC 어디서 열어도 같은 기록을 봅니다. 아래에 Firebase 정보를 넣고 저장하세요. (무료)',
+    sync_note:'클라우드를 켜면 폰·아이패드·PC 어디서 열어도 같은 기록을 봅니다. 켜려면 아래 “고급 설정”에서 Firebase 정보를 넣어주세요. (무료)',
+    cloud_help:'• 클라우드를 쓰지 않으면 기록·사진은 지금 이 기기에만 저장됩니다.\n• 클라우드를 켜면 사진까지 가족과 실시간으로 함께 봅니다.',
     room_title:'가족 공유 코드', room_label:'방 코드 (가족이 같은 값을 쓰면 데이터 공유)',
+    room_note:'• 가족끼리만 같은 코드를 쓰세요. 이 코드를 아는 사람은 같은 기록을 볼 수 있어요.\n• 코드는 언제든 바꿀 수 있고, 클라우드를 켰을 때만 공유에 사용됩니다.',
+    export_title:'데이터 백업', export_note:'기록과 사진을 파일(catdiary_backup.json) 하나로 내려받아 보관해요. 기기를 바꾸거나 만약을 대비할 때 좋아요.',
     fb_title:'Firebase 연동 (클라우드 DB)',
     fb_setup:'설정법: ① console.firebase.google.com 접속 → 프로젝트 만들기 ② Firestore Database 만들기(테스트 모드) ③ 프로젝트 설정 → 웹앱 추가 → 표시되는 값 복사 ④ 위 칸에 붙여넣기. 자세한 건 README 참고.',
     fb_save:'💾 저장 후 적용', fb_clear:'클라우드 끄기 (로컬만)', export:'📤 데이터 백업(내보내기)',
@@ -72,6 +80,7 @@ const I18N = {
     appTitle:'キコダイアリー 🐈', count:'匹',
     home_cat:'🐾 カテゴリー', catg_add_tile:'カテゴリー追加',
     home_today:'📝 今日の記録', today_done:'今日の記録 完了', today_do:'記録する',
+    today_do_full:'今日の健康を記録', today_view:'今日の記録を見る', today_status_done:'記録済み', today_status_todo:'まだ未記録',
     home_alert:'⚠️ 観察が必要です',
     home_upcoming:'🎉 近づく誕生日・記念日', no_anniv:'登録された記念日がありません',
     home_note:'カテゴリーを押して猫を登録すると、毎日30秒の健康記録と病院提出用のまとめが作れます。設定(⚙)でクラウド連携や言語を変更できます。',
@@ -98,6 +107,8 @@ const I18N = {
     alert_anniv:'名前を入力してください', anniv_common:'共通(特定の猫なし)', anniv_cat:'対象の猫',
     f_date:'日付', f_mood:'気分',
     rec_new:'今日の記録', rec_edit:'記録の編集', rec_empty:'まだ記録がありません。<br>下の ＋ で今日を記録しましょう ✍️',
+    rec_basic:'基本の健康チェック', rec_more:'詳しく記録する (嘔吐・遊び・体重・薬・写真・メモ)', rec_more_close:'簡単表示',
+    rel_today:'今日', rel_yesterday:'昨日',
     view_list:'リスト', view_cal:'カレンダー',
     f_condition:'😺 体調', f_meal:'🍚 食事', f_water:'💧 水', f_poop:'💩 便', f_pee:'🚽 尿', f_vomit:'🤮 嘔吐', f_play:'🧶 遊び',
     f_weight:'⚖️ 体重(kg)', f_meds:'💊 薬(投薬メモ)', f_memo:'📝 メモ',
@@ -115,10 +126,15 @@ const I18N = {
     ph_symptom:'例) 2日続けて嘔吐、食欲低下', ph_diagnosis:'例) 胃腸炎の疑い', ph_prescription:'例) 制吐剤3日分',
     next_visit:'次回受診', alert_vet:'症状か診断を入力してください', confirm_delvet:'この病院記録を削除しますか？',
     catg_add:'カテゴリー追加', catg_name:'カテゴリー名', ph_catg:'例) 会社の野良猫、田舎の猫', catg_emoji:'絵文字',
-    settings:'設定 ⚙', lang_title:'言語', sync_title:'同期状態',
+    settings:'設定 ⚙', lang_title:'言語',
+    set_general:'一般設定', set_advanced:'⚙ 詳細設定 (クラウド直接連携)',
+    sync_title:'クラウド同期', sync_state:'現在の保存方法',
     sync_cloud:'● クラウド同期オン', sync_local:'● この端末のみ保存中(ローカル)',
-    sync_note:'クラウドをオンにすると、スマホ・iPad・PCどこで開いても同じ記録が見られます。下にFirebase情報を入力して保存してください。(無料)',
+    sync_note:'クラウドをオンにすると、スマホ・iPad・PCどこで開いても同じ記録が見られます。オンにするには下の「詳細設定」でFirebase情報を入力してください。(無料)',
+    cloud_help:'• クラウドを使わない場合、記録と写真は今この端末だけに保存されます。\n• クラウドをオンにすると写真まで家族とリアルタイムで共有できます。',
     room_title:'家族共有コード', room_label:'ルームコード(家族が同じ値を使うとデータ共有)',
+    room_note:'• 家族だけで同じコードを使ってください。このコードを知っている人は同じ記録を見られます。\n• コードはいつでも変更でき、クラウドをオンにしたときだけ共有に使われます。',
+    export_title:'データバックアップ', export_note:'記録と写真を1つのファイル(catdiary_backup.json)に保存します。端末を変えるときや万が一に備えて便利です。',
     fb_title:'Firebase連携(クラウドDB)',
     fb_setup:'設定方法: ① console.firebase.google.com にアクセス→プロジェクト作成 ② Firestore Database作成(テストモード) ③ プロジェクト設定→Webアプリ追加→表示される値をコピー ④ 上の欄に貼り付け。詳細はREADME参照。',
     fb_save:'💾 保存して適用', fb_clear:'クラウドをオフ(ローカルのみ)', export:'📤 データバックアップ(書き出し)',
@@ -247,7 +263,8 @@ function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repla
 const SEXEMO = s=> s==='여아'?'♀':'♂';
 function parseMMDD(b){ if(!b) return null; const m=b.match(/(\d{1,2})\D+(\d{1,2})\D*$/); if(m) return [parseInt(m[1]),parseInt(m[2])]; const m2=b.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/); if(m2) return [parseInt(m2[2]),parseInt(m2[3])]; return null; }
 function fmtBday(b){ const p=parseMMDD(b); if(!p) return b||'-'; return LANG==='ja'? `${p[0]}月${p[1]}日` : `${p[0]}월 ${p[1]}일`; }
-function fmtDate(s){ if(!s||s.length<10) return s||'-'; const p=s.split('-'); const y=+p[0],m=+p[1],d=+p[2]; return LANG==='ja'? `${y}年${m}月${d}日` : `${y}.${m}.${d}`; }
+function fmtDate(s){ if(!s||s.length<10) return s||'-'; const p=s.split('-'); const y=+p[0],m=+p[1],d=+p[2]; const mm=String(m).padStart(2,'0'),dd=String(d).padStart(2,'0'); return LANG==='ja'? `${y}年${m}月${d}日` : `${y}.${mm}.${dd}`; }
+function fmtDateRel(s){ if(!s||s.length<10) return fmtDate(s); if(s===todayStr()) return t('rel_today')+' · '+fmtDate(s); if(s===daysAgoStr(1)) return t('rel_yesterday')+' · '+fmtDate(s); return fmtDate(s); }
 function nextOcc(mm,dd){ const now=new Date(); const today=new Date(now.getFullYear(),now.getMonth(),now.getDate()); let d=new Date(today.getFullYear(),mm-1,dd); if(d<today) d=new Date(today.getFullYear()+1,mm-1,dd); return d; }
 function daysUntil(d){ const now=new Date(); const today=new Date(now.getFullYear(),now.getMonth(),now.getDate()); return Math.round((d-today)/86400000); }
 function ddayLabel(n){ return n===0?'D-DAY':(n>0?'D-'+n:'D+'+(-n)); }
@@ -335,10 +352,12 @@ function renderHome(){
       const ph=DB.photos[c.id];
       const av= ph? `<div class="avatar sm" style="background-image:url('${ph}')"></div>` : `<div class="avatar sm ph">🐱</div>`;
       const done=recordedToday(c.id);
-      const btn= done? `<button class="act done">✓ ${t('today_done')}</button>`
-        : `<button class="act go" onclick="event.stopPropagation();go('editRecord',{catId:'${c.id}'})">${t('today_do')}</button>`;
-      return `<div class="todo" onclick="go('cat',{id:'${c.id}',tab:'record'})">${av}
-        <div class="meta"><div class="nm">${esc(c.name)}</div><div class="sub">${done?'🐾':'📝'} ${fmtDate(todayStr())}</div></div>${btn}</div>`;
+      const status= done? `<span class="stat done">✓ ${t('today_status_done')}</span>` : `<span class="stat todo">${t('today_status_todo')}</span>`;
+      const btn= done
+        ? `<button class="act view" onclick="event.stopPropagation();go('cat',{id:'${c.id}',tab:'record'})">${t('today_view')}</button>`
+        : `<button class="act go" onclick="event.stopPropagation();go('editRecord',{catId:'${c.id}'})">${t('today_do_full')}</button>`;
+      return `<div class="todo${done?' done':''}" onclick="go('cat',{id:'${c.id}',tab:'record'})">${av}
+        <div class="meta"><div class="nm">${esc(c.name)}</div><div class="sub">${fmtDate(todayStr())} ${status}</div></div>${btn}</div>`;
     }).join('');
   }
 
@@ -385,10 +404,12 @@ function renderCategory(catId){
     const ph=DB.photos[c.id];
     const av= ph? `<div class="avatar" style="background-image:url('${ph}')"></div>` : `<div class="avatar ph">🐱</div>`;
     const alert=catAlert(c.id)? ' <span style="color:#cf5b5b">⚠️</span>':'';
-    const done=recordedToday(c.id)?' · 🐾':'';
+    const done=recordedToday(c.id);
+    const dchip= done? `<span class="dchip done">✓ ${t('today_status_done')}</span>` : `<span class="dchip todo">${t('today_status_todo')}</span>`;
     return `<div class="catcard" onclick="go('cat',{id:'${c.id}'})">${av}
       <div class="meta"><div class="nm">${esc(c.name)} ${SEXEMO(c.sex)}${alert}</div>
-      <div class="sub">🎂 ${fmtBday(c.birthday)} · ${esc(c.nick||'')}${done}</div></div>
+      <div class="sub">🎂 ${fmtBday(c.birthday)} · ${esc(c.nick||'')}</div>
+      <div style="margin-top:5px">${dchip}</div></div>
       <div class="chev">›</div></div>`;
   }).join('') : '<div class="empty">'+t('cat_empty')+'</div>';
   $('#view').innerHTML = html;
@@ -468,7 +489,7 @@ function catRecord(c){
   const body = list.length ? list.map(e=>{
     const ph=DB.photos['r_'+e.id];
     return `<div class="entry" onclick="go('editRecord',{catId:'${id}',id:'${e.id}'})">
-      <div class="d"><span>📅 ${fmtDate(e.date)}</span><span class="mood">${e.mood||''}</span></div>
+      <div class="d"><span>📅 ${fmtDateRel(e.date)}</span><span class="mood">${e.mood||''}</span></div>
       ${recChips(e)}
       ${e.body?`<div class="b">${esc(e.body)}</div>`:''}
       ${ph?`<img class="thumb" src="${ph}">`:''}</div>`;
@@ -696,22 +717,31 @@ function renderEditRecord(catId, id, presetDate){
   $('#title').textContent= c.name+' · '+(editing?t('rec_edit'):t('rec_new'));
   const moods=['😻','😺','😴','😋','🥺','😾'];
   const ph=DB.photos['r_'+rid];
-  let fields=['condition','meal','water','poop','pee','vomit','play'].map(f=>recSeg(f,e[f])).join('');
+  const basicFields=['condition','meal','water','poop','pee'].map(f=>recSeg(f,e[f])).join('');
+  const moreFields=['vomit','play'].map(f=>recSeg(f,e[f])).join('');
+  const hasMore = !!(e.vomit||e.play||e.weight||e.meds||e.body||ph);
   $('#view').innerHTML=`
     <label class="fld">${t('f_date')}</label><input type="date" id="r_date" value="${esc(e.date||todayStr())}">
+    <h4 class="recsec">${t('rec_basic')}</h4>
     <label class="fld">${t('f_mood')}</label>
     <div class="moodpick" id="moods">${moods.map(m=>`<button class="${e.mood===m?'on':''}" data-m="${m}">${m}</button>`).join('')}</div>
-    ${fields}
-    <div class="recfield"><div class="rl">${t('f_weight')}</div><input type="number" step="0.1" id="r_weight" inputmode="decimal" value="${esc(e.weight||'')}"></div>
-    <div class="recfield"><div class="rl">${t('f_meds')}</div><input type="text" id="r_meds" value="${esc(e.meds||'')}" placeholder="${t('ph_meds')}"></div>
-    <div class="photo-pick" style="margin-top:14px">
-      <div class="pv" id="pv" style="${ph?`background-image:url('${ph}')`:''}">${ph?'':'📷'}</div>
-      <div><button class="btn ghost" style="margin:0" onclick="document.getElementById('rphoto').click()">${t('photo_pick')}</button>
-      <input type="file" id="rphoto" accept="image/*" style="display:none"></div>
+    ${basicFields}
+    <button type="button" class="moretoggle" id="moreToggle">${hasMore?'▴ '+t('rec_more_close'):'▾ '+t('rec_more')}</button>
+    <div class="morewrap" id="moreWrap" style="display:${hasMore?'block':'none'}">
+      ${moreFields}
+      <div class="recfield"><div class="rl">${t('f_weight')}</div><input type="number" step="0.1" id="r_weight" inputmode="decimal" value="${esc(e.weight||'')}"></div>
+      <div class="recfield"><div class="rl">${t('f_meds')}</div><input type="text" id="r_meds" value="${esc(e.meds||'')}" placeholder="${t('ph_meds')}"></div>
+      <div class="photo-pick" style="margin-top:14px">
+        <div class="pv" id="pv" style="${ph?`background-image:url('${ph}')`:''}">${ph?'':'📷'}</div>
+        <div><button class="btn ghost" style="margin:0" onclick="document.getElementById('rphoto').click()">${t('photo_pick')}</button>
+        <input type="file" id="rphoto" accept="image/*" style="display:none"></div>
+      </div>
+      <label class="fld">${t('f_memo')}</label><textarea id="r_body" placeholder="${t('ph_memo')}">${esc(e.body||'')}</textarea>
     </div>
-    <label class="fld">${t('f_memo')}</label><textarea id="r_body" placeholder="${t('ph_memo')}">${esc(e.body||'')}</textarea>
     <button class="btn primary" id="saveR">${t('save')}</button>
     ${editing?`<button class="btn danger" id="delR">${t('del')||'🗑 삭제'}</button>`:''}`;
+  const mt=$('#moreToggle'), mw=$('#moreWrap');
+  mt.onclick=()=>{ const open=mw.style.display!=='none'; mw.style.display=open?'none':'block'; mt.textContent=open?'▾ '+t('rec_more'):'▴ '+t('rec_more_close'); };
   const sel={};
   ['condition','meal','water','poop','pee','vomit','play'].forEach(f=>{ if(e[f]) sel[f]=e[f]; });
   $('#view').querySelectorAll('.recseg[data-f]').forEach(seg=>{
@@ -808,16 +838,24 @@ function renderSettings(){
     ? '<span class="status cloud">'+t('sync_cloud')+'</span>'
     : '<span class="status local">'+t('sync_local')+'</span>';
   $('#view').innerHTML=`
+    <h3 class="sec">${t('set_general')}</h3>
     <div class="card"><h4>🌐 ${t('lang_title')}</h4>
       <div class="seg"><button class="${LANG==='ko'?'on':''}" onclick="setLang('ko')">한국어</button>
       <button class="${LANG==='ja'?'on':''}" onclick="setLang('ja')">日本語</button></div></div>
-    <div class="card"><h4>${t('sync_title')}</h4>${st}
-      <div class="note">${t('sync_note')}</div></div>
-    <div class="card"><h4>${t('room_title')}</h4>
+    <div class="card"><h4>☁️ ${t('sync_title')}</h4>
+      <div class="kv"><span class="k">${t('sync_state')}</span><span class="v">${st}</span></div>
+      <div class="note">${t('cloud_help')}</div></div>
+    <div class="card"><h4>👨‍👩‍👧 ${t('room_title')}</h4>
       <label class="fld">${t('room_label')}</label>
       <input type="text" id="s_room" value="${esc(room)}">
+      <div class="note">${t('room_note')}</div>
     </div>
-    <div class="card"><h4>${t('fb_title')}</h4>
+    <div class="card"><h4>💾 ${t('export_title')}</h4>
+      <div class="note" style="margin-top:0">${t('export_note')}</div>
+      <button class="btn ghost" id="s_export">${t('export')}</button></div>
+    <h3 class="sec">${t('set_advanced')}</h3>
+    <details class="adv"><summary>${t('fb_title')}</summary>
+      <div class="inner">
       <label class="fld">apiKey</label><input type="text" id="s_api" value="${esc(cfg.apiKey||'')}">
       <label class="fld">authDomain</label><input type="text" id="s_auth" value="${esc(cfg.authDomain||'')}">
       <label class="fld">projectId</label><input type="text" id="s_proj" value="${esc(cfg.projectId||'')}">
@@ -825,8 +863,8 @@ function renderSettings(){
       <button class="btn primary" id="s_save">${t('fb_save')}</button>
       <button class="btn ghost" id="s_clear">${t('fb_clear')}</button>
       <div class="note">${t('fb_setup')}</div>
-    </div>
-    <button class="btn ghost" id="s_export">${t('export')}</button>`;
+      </div>
+    </details>`;
   $('#s_save').onclick=()=>{
     const cc={apiKey:$('#s_api').value.trim(),authDomain:$('#s_auth').value.trim(),projectId:$('#s_proj').value.trim(),appId:$('#s_app').value.trim()};
     cc.storageBucket=(cc.projectId?cc.projectId+'.appspot.com':'');

@@ -188,11 +188,30 @@
     background:#5a4a42;color:#fff;font-size:13px;padding:7px 14px;border-radius:999px;opacity:0;
     transition:.3s;z-index:30;pointer-events:none}
   .syncpill.show{opacity:.92}
-  .note{font-size:13px;color:#a07e6f;line-height:1.5;background:var(--soft);border-radius:12px;padding:12px;margin-top:10px}
+  .note{font-size:13.5px;color:#7c655a;line-height:1.65;background:var(--soft);border-radius:12px;padding:12px;margin-top:10px;white-space:pre-line;font-family:'Apple SD Gothic Neo','Hiragino Sans','Noto Sans JP',sans-serif}
   .status{font-size:13px;padding:6px 10px;border-radius:999px;display:inline-block;margin-top:6px}
   .status.cloud{background:#dff3e3;color:#3f9d56}
   .status.local{background:#fde9d6;color:#cf8a2b}
   code{background:#fff;border:1px solid #eee;border-radius:6px;padding:1px 5px;font-size:13px}
+
+  /* 오늘 기록 상태 칩 */
+  .dchip,.todo .stat{font-size:12px;font-weight:700;border-radius:999px;padding:2px 9px;display:inline-block;font-family:'Apple SD Gothic Neo','Hiragino Sans',sans-serif}
+  .dchip.done,.todo .stat.done{background:#dff3e3;color:#3f9d56}
+  .dchip.todo,.todo .stat.todo{background:#fde9d6;color:#cf8a2b}
+  .todo.done{opacity:.95}
+  .todo .act.view{background:#eef6ef;color:#3f9d56}
+  /* 기록 화면 기본/상세 분리 */
+  h4.recsec{font-family:'Jua';font-size:16px;color:#7a6258;margin:18px 2px 2px}
+  .moretoggle{display:block;width:100%;background:#fff8f4;border:1px dashed #e6c9bd;color:#a07e6f;
+    border-radius:12px;padding:12px;font-family:'Jua';font-size:15px;cursor:pointer;margin-top:18px}
+  .morewrap{margin-top:2px}
+  /* 설정 고급 접기 */
+  details.adv{margin-top:12px;background:#fffdfb;border-radius:18px;box-shadow:0 6px 16px rgba(255,170,190,.16);overflow:hidden}
+  details.adv>summary{list-style:none;cursor:pointer;padding:14px 16px;font-family:'Jua';font-size:16px;color:#7a6258}
+  details.adv>summary::-webkit-details-marker{display:none}
+  details.adv>summary::after{content:'▾';float:right;color:#c9b3a8}
+  details.adv[open]>summary::after{content:'▴'}
+  details.adv .inner{padding:0 16px 16px}
 
   @media print{
     header.bar,.fab,.tabs2,.seg,.syncpill,#back,#gear,.noprint{display:none!important}
