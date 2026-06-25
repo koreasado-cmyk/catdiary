@@ -51,7 +51,10 @@ const I18N = {
     f_vdate:'방문일', f_symptom:'증상', f_diagnosis:'진단', f_prescription:'처방', f_cost:'진료비(원)', f_next:'다음 방문일', f_vmemo:'메모/검사결과',
     ph_symptom:'예) 이틀째 구토, 식욕저하', ph_diagnosis:'예) 위장염 의심', ph_prescription:'예) 항구토제 3일분',
     next_visit:'다음 방문', alert_vet:'증상이나 진단을 입력해 주세요', confirm_delvet:'이 병원 기록을 삭제할까요?',
-    catg_add:'카테고리 추가', catg_name:'카테고리 이름', ph_catg:'예) 회사 길냥이, 시골집 냥이', catg_emoji:'이모지',
+    catg_add:'카테고리 추가', catg_name:'카테고리 이름', ph_catg:'예) 회사 길냥이, 시골집 냥이', catg_emoji:'이모지 선택',
+    catg_delete:'🗑 이 카테고리 삭제',
+    confirm_delcatg:'"{name}" 카테고리를 삭제할까요?',
+    confirm_delcatg_cats:'"{name}" 카테고리의 아이 {n}마리와 모든 기록이 함께 삭제됩니다. 삭제할까요?',
     settings:'설정 ⚙', lang_title:'언어',
     set_general:'일반 설정', set_advanced:'⚙ 고급 설정 (클라우드 직접 연동)',
     sync_title:'클라우드 동기화', sync_state:'현재 저장 방식',
@@ -125,7 +128,10 @@ const I18N = {
     f_vdate:'受診日', f_symptom:'症状', f_diagnosis:'診断', f_prescription:'処方', f_cost:'診療費(円)', f_next:'次回受診日', f_vmemo:'メモ/検査結果',
     ph_symptom:'例) 2日続けて嘔吐、食欲低下', ph_diagnosis:'例) 胃腸炎の疑い', ph_prescription:'例) 制吐剤3日分',
     next_visit:'次回受診', alert_vet:'症状か診断を入力してください', confirm_delvet:'この病院記録を削除しますか？',
-    catg_add:'カテゴリー追加', catg_name:'カテゴリー名', ph_catg:'例) 会社の野良猫、田舎の猫', catg_emoji:'絵文字',
+    catg_add:'カテゴリー追加', catg_name:'カテゴリー名', ph_catg:'例) 会社の野良猫、田舎の猫', catg_emoji:'絵文字を選択',
+    catg_delete:'🗑 このカテゴリーを削除',
+    confirm_delcatg:'「{name}」カテゴリーを削除しますか？',
+    confirm_delcatg_cats:'「{name}」カテゴリーの猫 {n}匹とすべての記録が一緒に削除されます。削除しますか？',
     settings:'設定 ⚙', lang_title:'言語',
     set_general:'一般設定', set_advanced:'⚙ 詳細設定 (クラウド直接連携)',
     sync_title:'クラウド同期', sync_state:'現在の保存方法',
@@ -414,8 +420,28 @@ function renderCategory(catId){
       <div style="margin-top:5px">${dchip}</div></div>
       <div class="chev">›</div></div>`;
   }).join('') : '<div class="empty">'+t('cat_empty')+'</div>';
-  $('#view').innerHTML = html;
+  $('#view').innerHTML = html + `<button class="btn danger" id="delCatg">${t('catg_delete')}</button>`;
   addFab(()=>go('editCat',{cat:catId}));
+  $('#delCatg').onclick=()=>delCategory(catId);
+}
+
+async function delCategory(catId){
+  const cat=DB.state.categories.find(x=>x.id===catId); if(!cat) return;
+  const inCats=catsIn(catId);
+  if(inCats.length){
+    if(!confirm(t('confirm_delcatg_cats').replace('{name}',cat.name).replace('{n}',inCats.length))) return;
+    const ids=inCats.map(c=>c.id);
+    DB.state.cats=DB.state.cats.filter(c=>c.cat!==catId);
+    DB.state.diary=DB.state.diary.filter(x=>!ids.includes(x.catId));
+    DB.state.anniversaries=DB.state.anniversaries.filter(x=>!ids.includes(x.catId));
+    DB.state.vet=DB.state.vet.filter(x=>!ids.includes(x.catId));
+    for(const id of ids){ await DB.removePhoto(id); }
+  } else {
+    if(!confirm(t('confirm_delcatg').replace('{name}',cat.name))) return;
+  }
+  DB.state.categories=DB.state.categories.filter(x=>x.id!==catId);
+  await DB.saveState();
+  reset('home');
 }
 
 /* ---------- 고양이 상세 (탭) ---------- */
@@ -823,7 +849,9 @@ function renderCatgAdd(){
   setTheme('#ff8fab','#ffe3ec'); $('#title').textContent=t('catg_add');
   $('#back').style.visibility='visible';
   const old=$('.fab'); if(old) old.remove();
-  const CHOICES=['🐾','🏠','🏡','🏢','🌳','🐱','😺','🐈','🐈‍⬛','🐯','🌙','⭐','❤️','🐟','🍼','👑'];
+  const CHOICES=['🐾','🐱','😺','😻','🐈','🐈‍⬛','🦁','🐯','🐶','🐰','🐹','🐭',
+    '🏠','🏡','🏢','🏬','🏥','🏫','🌳','🌲','🌷','🌙','☀️','⭐',
+    '❤️','💛','💚','💙','💜','🧡','🤍','🐟','🍗','🍼','🧶','👑'];
   let sel='🐾';
   const btns=CHOICES.map(e=>`<button type="button" class="emoopt${e===sel?' on':''}" data-e="${e}">${e}</button>`).join('');
   $('#view').innerHTML=`
