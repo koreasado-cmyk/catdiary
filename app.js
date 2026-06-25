@@ -50,7 +50,15 @@ const I18N = {
     f_condition:'😺 컨디션', f_meal:'🍚 식사', f_water:'💧 물', f_poop:'💩 대변', f_pee:'🚽 소변', f_vomit:'🤮 구토', f_play:'🧶 놀이',
     f_weight:'⚖️ 몸무게(kg)', f_meds:'💊 약(투약 메모)', f_memo:'📝 메모',
     ph_meds:'예) 신장약 1회', ph_memo:'오늘 우리 아이 모습, 특이사항…',
-    saved_feedback:'오늘 기록 완료 🐾', recent7:'최근 7일',
+    saved_feedback:'오늘 기록이 저장됐어요 🐾 내일도 같이 기록해요!', recent7:'최근 7일',
+    val_title:'🐾 냥코다이어리로 할 수 있어요',
+    val_30s_t:'30초 건강 체크', val_30s_d:'식사·물·배변·몸무게를 매일 가볍게',
+    val_alert_t:'이상 증상 자동 요약', val_alert_d:'구토·식욕저하 패턴을 자동 정리',
+    val_pdf_t:'병원 제출용 PDF', val_pdf_d:'진료 전 최근 기록을 한 장으로',
+    empty_rec_title:'아직 기록이 없어요 ✍️', empty_rec_note:'오늘 컨디션을 30초만 남겨보세요.',
+    empty_rec_btn:'＋ 오늘 기록 시작하기',
+    empty_stats_title:'통계가 곧 채워져요 📊', empty_stats_note:'몸무게를 2번 이상 기록하면 그래프가, 매일 기록하면 30일 요약이 나타나요.',
+    empty_stats_btn:'📝 오늘 건강 기록하기',
     cal_legend_v:'구토', cal_legend_p:'묽은 변', cal_legend_m:'약', cal_legend_h:'병원', cal_legend_g:'사진',
     stats_weight:'⚖️ 몸무게 변화', stats_30:'📊 최근 30일 요약', stats_none:'몸무게 기록이 2회 이상 쌓이면 그래프가 표시돼요',
     st_vomit:'구토', st_loose:'묽은 변', st_lowappe:'식욕저하', st_lowwater:'물 부족', st_vet:'병원', st_wchange:'몸무게 변화',
@@ -58,6 +66,7 @@ const I18N = {
     rep_title:'🏥 병원 제출용 요약', rep_print:'🖨 인쇄 / PDF 저장', rep_30d:'최근 30일',
     rep_period:'기간', rep_summary:'요약', rep_events:'증상 기록', rep_meds:'복용약', rep_vet:'병원 방문', rep_weight:'몸무게',
     rep_none:'특이사항 없음', rep_made_pre:'냥코다이어리에서 작성 · ', rep_records:'기록 수',
+    rep_basic:'기본 정보', rep_timeline:'증상 타임라인', rep_memo:'보호자 메모', rep_weight_trend:'몸무게 추이',
     vet_new:'병원 기록 추가', vet_edit:'병원 기록 수정', vet_empty:'병원 방문을 기록해 보세요 🏥',
     f_vdate:'방문일', f_symptom:'증상', f_diagnosis:'진단', f_prescription:'처방', f_cost:'진료비(원)', f_next:'다음 방문일', f_vmemo:'메모/검사결과',
     ph_symptom:'예) 이틀째 구토, 식욕저하', ph_diagnosis:'예) 위장염 의심', ph_prescription:'예) 항구토제 3일분',
@@ -142,7 +151,15 @@ const I18N = {
     f_condition:'😺 体調', f_meal:'🍚 食事', f_water:'💧 水', f_poop:'💩 便', f_pee:'🚽 尿', f_vomit:'🤮 嘔吐', f_play:'🧶 遊び',
     f_weight:'⚖️ 体重(kg)', f_meds:'💊 薬(投薬メモ)', f_memo:'📝 メモ',
     ph_meds:'例) 腎臓薬 1回', ph_memo:'今日のうちの子の様子、気づいたこと…',
-    saved_feedback:'今日の記録 完了 🐾', recent7:'最近7日',
+    saved_feedback:'今日の記録を保存しました 🐾 明日も一緒に記録しましょう！', recent7:'最近7日',
+    val_title:'🐾 ニャンコダイアリーでできること',
+    val_30s_t:'30秒の健康チェック', val_30s_d:'食事・水・排泄・体重を毎日かんたんに',
+    val_alert_t:'異常症状の自動まとめ', val_alert_d:'嘔吐・食欲低下パターンを自動整理',
+    val_pdf_t:'診察提出用PDF', val_pdf_d:'受診前に最近の記録を一枚に',
+    empty_rec_title:'まだ記録がありません ✍️', empty_rec_note:'今日のコンディションを30秒だけ残しましょう。',
+    empty_rec_btn:'＋ 今日の記録を始める',
+    empty_stats_title:'統計がもうすぐ表示されます 📊', empty_stats_note:'体重を2回以上記録するとグラフが、毎日記録すると30日まとめが表示されます。',
+    empty_stats_btn:'📝 今日の健康を記録',
     cal_legend_v:'嘔吐', cal_legend_p:'軟便', cal_legend_m:'薬', cal_legend_h:'病院', cal_legend_g:'写真',
     stats_weight:'⚖️ 体重の変化', stats_30:'📊 最近30日のまとめ', stats_none:'体重記録が2回以上たまるとグラフが表示されます',
     st_vomit:'嘔吐', st_loose:'軟便', st_lowappe:'食欲低下', st_lowwater:'水不足', st_vet:'病院', st_wchange:'体重の変化',
@@ -150,6 +167,7 @@ const I18N = {
     rep_title:'🏥 病院提出用まとめ', rep_print:'🖨 印刷 / PDF保存', rep_30d:'最近30日',
     rep_period:'期間', rep_summary:'まとめ', rep_events:'症状の記録', rep_meds:'服用薬', rep_vet:'通院', rep_weight:'体重',
     rep_none:'特記事項なし', rep_made_pre:'ニャンコダイアリーで作成 · ', rep_records:'記録数',
+    rep_basic:'基本情報', rep_timeline:'症状タイムライン', rep_memo:'飼い主メモ', rep_weight_trend:'体重の推移',
     vet_new:'病院記録の追加', vet_edit:'病院記録の編集', vet_empty:'通院を記録してみましょう 🏥',
     f_vdate:'受診日', f_symptom:'症状', f_diagnosis:'診断', f_prescription:'処方', f_cost:'診療費(円)', f_next:'次回受診日', f_vmemo:'メモ/検査結果',
     ph_symptom:'例) 2日続けて嘔吐、食欲低下', ph_diagnosis:'例) 胃腸炎の疑い', ph_prescription:'例) 制吐剤3日分',
@@ -308,7 +326,7 @@ const DB = {
 const $ = s=>document.querySelector(s);
 const HOME_TITLE_HTML = (()=>{ const el=document.querySelector('#title'); return el?el.innerHTML:''; })();
 function setHomeTitle(){ const el=$('#title'); if(HOME_TITLE_HTML.indexOf('cavatar')>=0){ el.innerHTML=HOME_TITLE_HTML; const tx=$('#titletext'); if(tx) tx.textContent=t('appTitle'); } else { el.textContent=t('appTitle'); } }
-let pillTmr; function toast(msg){ const p=$('#pill'); if(msg)p.textContent=msg; p.classList.add('show'); clearTimeout(pillTmr); pillTmr=setTimeout(()=>p.classList.remove('show'),1200); }
+let pillTmr; function toast(msg,ms){ const p=$('#pill'); if(msg)p.textContent=msg; p.classList.add('show'); clearTimeout(pillTmr); pillTmr=setTimeout(()=>p.classList.remove('show'),ms||1200); }
 function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
 function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 const SEXEMO = s=> s==='여아'?'♀':'♂';
@@ -421,10 +439,16 @@ function renderHome(){
   }).join('');
   tiles += `<div class="tile add" onclick="go('editCatg')"><div class="emo">＋</div><div class="nm">${t('catg_add_tile')}</div></div>`;
 
-  // 첫 사용자 안내 — 카테고리보다 '우리 아이 등록'을 먼저
+  // 첫 사용자 안내 — 핵심 가치 3개 + '우리 아이 등록'을 먼저
   let startGuide='';
   if(!DB.state.cats.length){
-    startGuide=`<div class="startbox"><div class="t">${t('home_addcat_title')}</div>
+    const valcard=(emo,tt,dd)=>`<div class="valcard"><div class="ve">${emo}</div><div class="vt">${t(tt)}</div><div class="vd">${t(dd)}</div></div>`;
+    const valueProps=`<div class="valwrap"><h3 class="valhead">${t('val_title')}</h3><div class="valgrid">
+      ${valcard('⏱️','val_30s_t','val_30s_d')}
+      ${valcard('⚠️','val_alert_t','val_alert_d')}
+      ${valcard('🏥','val_pdf_t','val_pdf_d')}
+    </div></div>`;
+    startGuide=valueProps+`<div class="startbox"><div class="t">${t('home_addcat_title')}</div>
       <div class="s">${esc(t('home_addcat_note'))}</div>
       <button class="bigbtn" onclick="startRegister()">${t('home_start_btn')}</button></div>`;
   }
@@ -601,7 +625,9 @@ function catRecord(c){
       ${recChips(e)}
       ${e.body?`<div class="b">${esc(e.body)}</div>`:''}
       ${ph?`<img class="thumb" src="${ph}">`:''}</div>`;
-  }).join('') : '<div class="empty">'+t('rec_empty')+'</div>';
+  }).join('') : `<div class="startbox"><div class="t">${t('empty_rec_title')}</div>
+      <div class="s">${esc(t('empty_rec_note'))}</div>
+      <button class="bigbtn" onclick="go('editRecord',{catId:'${id}'})">${t('empty_rec_btn')}</button></div>`;
   return seg + body;
 }
 function setRView(v){ cur().rview=v; render(); }
@@ -683,6 +709,12 @@ function summary30(catId){
 function catStats(c){
   const pts=weightSeries(c.id); const s=summary30(c.id);
   const box=(n,l,warn)=>`<div class="statbox"><div class="n${warn?' warn':''}">${n}</div><div class="l">${l}</div></div>`;
+  // 기록이 아예 없으면 행동 유도 빈 화면
+  if(!recsOf(c.id).length){
+    return `<div class="startbox"><div class="t">${t('empty_stats_title')}</div>
+      <div class="s">${esc(t('empty_stats_note'))}</div>
+      <button class="bigbtn" onclick="go('editRecord',{catId:'${c.id}'})">${t('empty_stats_btn')}</button></div>`;
+  }
   return `<div class="card"><h4>${t('stats_weight')}</h4>${weightChart(pts)}</div>
     <div class="card"><h4>${t('stats_30')}</h4><div class="statgrid">
       ${box(s.vomit+t('unit_times'),t('st_vomit'),s.vomit>=2)}
@@ -709,26 +741,47 @@ function catReport(c){
   let events=[];
   rs.forEach(e=>{ const w=recWarns(e); if(w.length){ events.push(`<div class="evline"><span class="dt">${fmtDate(e.date)}</span>${w.map(k=>labels[k]).join(', ')}${e.body?' · '+esc(e.body):''}</div>`); }});
   const meds=[...new Set(rs.filter(e=>e.meds).map(e=>e.meds.trim()))];
-  const vetLines=vets.map(v=>`<div class="evline"><span class="dt">${fmtDate(v.date)}</span>${esc(v.symptom||'')}${v.diagnosis?' · '+esc(v.diagnosis):''}</div>`).join('');
+  const vetLines=vets.map(v=>`<div class="evline"><span class="dt">${fmtDate(v.date)}</span>${esc(v.symptom||'')}${v.diagnosis?' · 🩺'+esc(v.diagnosis):''}${v.prescription?' · 💊'+esc(v.prescription):''}${v.next?' · 📅'+t('next_visit')+' '+fmtDate(v.next):''}</div>`).join('');
+  const memoLines=rs.filter(e=>e.body).map(e=>`<div class="evline"><span class="dt">${fmtDate(e.date)}</span>${esc(e.body)}</div>`).join('');
   const D=t('none_dash');
   const rrow=(k,v,warn)=>`<div class="rrow"><span class="k">${k}</span><span class="v${warn?' warn':''}">${v}</span></div>`;
   const periodLabel=days===7?t('recent7'):t('rep_30d');
+  const neut = c.neutered==='y'?t('neutered_y'):(c.neutered==='n'?t('neutered_n'):D);
   return seg + `<div class="report card">
-    <div class="rhead"><h2>${esc(c.name)} 🐈</h2><div class="sub">${SEXEMO(c.sex)} · 🎂 ${fmtBday(c.birthday)}${c.breed?' · '+esc(c.breed):''}${c.disease?' · '+esc(c.disease):''}</div></div>
-    <h4>${t('rep_summary')} (${periodLabel})</h4>
-    ${rrow(t('rep_weight'), wtext, false)}
+    <div class="rhead"><h2>${esc(c.name)} 🐈</h2><div class="sub">${t('rep_period')}: ${periodLabel} · ${fmtDate(cut)} ~ ${fmtDate(todayStr())}</div></div>
+
+    <h4>${t('rep_basic')}</h4>
+    ${rrow(t('f_sex'), SEXEMO(c.sex)+' '+(c.sex==='여아'?t('female'):t('male')), false)}
+    ${rrow(t('f_bday'), fmtBday(c.birthday), false)}
+    ${rrow(t('f_breed'), esc(c.breed||D), false)}
+    ${rrow(t('f_neutered'), neut, false)}
+    ${rrow(t('f_weight_now'), c.weight?esc(c.weight)+' kg':D, false)}
+    ${rrow(t('f_disease'), esc(c.disease||D), !!c.disease)}
+    ${rrow(t('f_vet'), esc(c.vet||D), false)}
+
+    <h4 style="margin-top:12px">${t('rep_summary')} (${periodLabel})</h4>
     ${rrow(t('st_vomit'), s.vomit+t('unit_times'), s.vomit>=2)}
     ${rrow(t('st_loose'), s.loose+t('unit_times'), s.loose>=2)}
     ${rrow(t('st_lowappe'), s.low+t('unit_days'), s.low>=2)}
     ${rrow(t('st_lowwater'), s.lowwater+t('unit_days'), false)}
     ${rrow(t('rep_vet'), s.vet+t('unit_times'), false)}
     ${rrow(t('rep_records'), rs.length+t('unit_times'), false)}
-    <h4 style="margin-top:12px">${t('rep_events')}</h4>
+
+    <h4 style="margin-top:12px">${t('rep_weight_trend')}</h4>
+    ${rrow(t('rep_weight'), wtext, false)}
+
+    <h4 style="margin-top:12px">${t('rep_timeline')}</h4>
     ${events.length?events.join(''):'<div class="evline">'+t('rep_none')+'</div>'}
+
     <h4 style="margin-top:12px">${t('rep_meds')}</h4>
     <div class="evline">${meds.length?meds.map(esc).join(', '):D}</div>
+
     <h4 style="margin-top:12px">${t('rep_vet')}</h4>
     ${vetLines||'<div class="evline">'+D+'</div>'}
+
+    <h4 style="margin-top:12px">${t('rep_memo')}</h4>
+    ${memoLines||'<div class="evline">'+D+'</div>'}
+
     <div class="sub" style="text-align:center;color:#c4b3a8;margin-top:14px;font-size:12px">${t('rep_made_pre')}${fmtDate(todayStr())}</div>
   </div>
   <button class="btn primary noprint" id="repPrint">${t('rep_print')}</button>`;
@@ -878,7 +931,7 @@ function renderEditRecord(catId, id, presetDate){
     if(editing){ const i=DB.state.diary.findIndex(x=>x.id===rid); DB.state.diary[i]=obj; } else DB.state.diary.push(obj);
     await DB.saveState();
     if(newPhoto) await DB.setPhoto('r_'+rid,newPhoto);
-    toast(t('saved_feedback')); back();
+    toast(t('saved_feedback'),2600); back();
   };
   if(editing) $('#delR').onclick=async ()=>{ if(!confirm(t('confirm_deldiary')||'이 기록을 삭제할까요?'))return; DB.state.diary=DB.state.diary.filter(x=>x.id!==rid); await DB.removePhoto('r_'+rid); await DB.saveState(); back(); };
 }
