@@ -9,9 +9,16 @@ const I18N = {
     today_do_full:'오늘 건강 기록하기', today_view:'오늘 기록 보기', today_status_done:'기록 완료', today_status_todo:'아직 기록 전',
     home_alert:'⚠️ 관찰이 필요해요',
     home_upcoming:'🎉 다가오는 생일 · 기념일', no_anniv:'등록된 기념일이 없어요',
-    home_note:'카테고리를 눌러 아이를 등록하면, 매일 30초 건강 기록과 병원 제출용 요약을 만들 수 있어요. 설정(⚙)에서 클라우드 연동·언어를 바꿀 수 있어요.',
+    home_note:'우리 고양이 건강 변화, 병원 가기 전에 한눈에 정리하세요. 매일 30초 기록하면 병원 상담이 쉬워져요. 설정(⚙)에서 클라우드 연동·언어를 바꿀 수 있어요.',
+    home_start_title:'먼저 카테고리를 만들어 주세요 🐾',
+    home_start_note:'예) 우리집 냥이, 본가 냥이, 회사 길냥이\n카테고리 안에서 고양이를 등록하고 매일 건강 기록을 남길 수 있어요.',
+    home_start_btn:'＋ 처음 시작하기',
     birthday_word:'생일',
-    cat_empty:'아직 등록된 아이가 없어요.<br>아래 ＋ 버튼으로 추가해 주세요 🐾',
+    cat_empty:'아직 등록된 아이가 없어요 🐾',
+    cat_register_btn:'＋ 아이 등록하기',
+    reg_hint:'이름만 입력해도 시작할 수 있어요. 건강 정보는 나중에 천천히 추가해도 돼요.',
+    reg_sec_basic:'기본 정보', reg_sec_health:'건강 정보', reg_sec_extra:'추가 메모',
+    bday_hint:'예) 2022.03.15',
     tab_profile:'프로필', tab_record:'건강기록', tab_stats:'통계', tab_report:'리포트', tab_vet:'병원',
     edit_profile:'✏️ 프로필 수정', photo_pick:'📷 사진 선택',
     f_name:'이름', f_cat:'카테고리', f_sex:'성별', male:'남아', female:'여아',
@@ -51,7 +58,7 @@ const I18N = {
     f_vdate:'방문일', f_symptom:'증상', f_diagnosis:'진단', f_prescription:'처방', f_cost:'진료비(원)', f_next:'다음 방문일', f_vmemo:'메모/검사결과',
     ph_symptom:'예) 이틀째 구토, 식욕저하', ph_diagnosis:'예) 위장염 의심', ph_prescription:'예) 항구토제 3일분',
     next_visit:'다음 방문', alert_vet:'증상이나 진단을 입력해 주세요', confirm_delvet:'이 병원 기록을 삭제할까요?',
-    catg_add:'카테고리 추가', catg_name:'카테고리 이름', ph_catg:'예) 회사 길냥이, 시골집 냥이', catg_emoji:'이모지 선택',
+    catg_add:'카테고리 추가', catg_name:'카테고리 이름', ph_catg:'예) 우리집 냥이, 본가 냥이, 회사 길냥이', catg_emoji:'이모지 선택',
     catg_delete:'🗑 이 카테고리 삭제',
     confirm_delcatg:'"{name}" 카테고리를 삭제할까요?',
     confirm_delcatg_cats:'"{name}" 카테고리의 아이 {n}마리와 모든 기록이 함께 삭제됩니다. 삭제할까요?',
@@ -86,9 +93,16 @@ const I18N = {
     today_do_full:'今日の健康を記録', today_view:'今日の記録を見る', today_status_done:'記録済み', today_status_todo:'まだ未記録',
     home_alert:'⚠️ 観察が必要です',
     home_upcoming:'🎉 近づく誕生日・記念日', no_anniv:'登録された記念日がありません',
-    home_note:'カテゴリーを押して猫を登録すると、毎日30秒の健康記録と病院提出用のまとめが作れます。設定(⚙)でクラウド連携や言語を変更できます。',
+    home_note:'うちの子の健康の変化を、病院に行く前にひと目で整理。毎日30秒の記録で診察相談がラクになります。設定(⚙)でクラウド連携や言語を変更できます。',
+    home_start_title:'まずカテゴリーを作りましょう 🐾',
+    home_start_note:'例) うちの猫、実家の猫、会社の野良猫\nカテゴリーの中で猫を登録し、毎日健康記録を残せます。',
+    home_start_btn:'＋ はじめる',
     birthday_word:'誕生日',
-    cat_empty:'まだ登録された猫がいません。<br>下の ＋ ボタンで追加してください 🐾',
+    cat_empty:'まだ登録された猫がいません 🐾',
+    cat_register_btn:'＋ 猫を登録する',
+    reg_hint:'名前だけでも始められます。健康情報は後からゆっくり追加できます。',
+    reg_sec_basic:'基本情報', reg_sec_health:'健康情報', reg_sec_extra:'追加メモ',
+    bday_hint:'例) 2022.03.15',
     tab_profile:'プロフィール', tab_record:'健康記録', tab_stats:'統計', tab_report:'レポート', tab_vet:'病院',
     edit_profile:'✏️ プロフィール編集', photo_pick:'📷 写真を選択',
     f_name:'名前', f_cat:'カテゴリー', f_sex:'性別', male:'男の子', female:'女の子',
@@ -128,7 +142,7 @@ const I18N = {
     f_vdate:'受診日', f_symptom:'症状', f_diagnosis:'診断', f_prescription:'処方', f_cost:'診療費(円)', f_next:'次回受診日', f_vmemo:'メモ/検査結果',
     ph_symptom:'例) 2日続けて嘔吐、食欲低下', ph_diagnosis:'例) 胃腸炎の疑い', ph_prescription:'例) 制吐剤3日分',
     next_visit:'次回受診', alert_vet:'症状か診断を入力してください', confirm_delvet:'この病院記録を削除しますか？',
-    catg_add:'カテゴリー追加', catg_name:'カテゴリー名', ph_catg:'例) 会社の野良猫、田舎の猫', catg_emoji:'絵文字を選択',
+    catg_add:'カテゴリー追加', catg_name:'カテゴリー名', ph_catg:'例) うちの猫、実家の猫、会社の野良猫', catg_emoji:'絵文字を選択',
     catg_delete:'🗑 このカテゴリーを削除',
     confirm_delcatg:'「{name}」カテゴリーを削除しますか？',
     confirm_delcatg_cats:'「{name}」カテゴリーの猫 {n}匹とすべての記録が一緒に削除されます。削除しますか？',
@@ -353,6 +367,14 @@ function renderHome(){
   }).join('');
   tiles += `<div class="tile add" onclick="go('editCatg')"><div class="emo">＋</div><div class="nm">${t('catg_add_tile')}</div></div>`;
 
+  // 첫 사용자 안내 (카테고리가 없을 때)
+  let startGuide='';
+  if(!cats.length){
+    startGuide=`<div class="startbox"><div class="t">${t('home_start_title')}</div>
+      <div class="s">${esc(t('home_start_note'))}</div>
+      <button class="bigbtn" onclick="go('editCatg')">${t('home_start_btn')}</button></div>`;
+  }
+
   // 오늘 기록
   let todo='';
   if(DB.state.cats.length){
@@ -387,6 +409,7 @@ function renderHome(){
   }).join('') : '<div class="empty">'+t('no_anniv')+'</div>';
 
   $('#view').innerHTML=`
+    ${startGuide}
     <h3 class="sec">${t('home_cat')}</h3>
     <div class="grid">${tiles}</div>
     ${todo}
@@ -419,7 +442,8 @@ function renderCategory(catId){
       <div class="sub">🎂 ${fmtBday(c.birthday)} · ${esc(c.nick||'')}</div>
       <div style="margin-top:5px">${dchip}</div></div>
       <div class="chev">›</div></div>`;
-  }).join('') : '<div class="empty">'+t('cat_empty')+'</div>';
+  }).join('') : `<div class="startbox"><div class="t">${t('cat_empty')}</div>
+      <button class="bigbtn" onclick="go('editCat',{cat:'${catId}'})">${t('cat_register_btn')}</button></div>`;
   $('#view').innerHTML = html + `<button class="btn danger" id="delCatg">${t('catg_delete')}</button>`;
   addFab(()=>go('editCat',{cat:catId}));
   $('#delCatg').onclick=()=>delCategory(catId);
@@ -677,6 +701,8 @@ function renderEditCat(catId, id){
   const opts = DB.state.categories.map(x=>`<option value="${x.id}" ${x.id===(c.cat||catId)?'selected':''}>${esc(x.emoji||'')} ${esc(x.name)}</option>`).join('');
   const careChips = CARE_TOPICS.map(k=>`<button type="button" data-care="${k}" class="${(c.careTopics||[]).indexOf(k)>=0?'on':''}">${t('care_'+k)}</button>`).join('');
   $('#view').innerHTML=`
+    ${editing?'':`<div class="note">${t('reg_hint')}</div>`}
+    <div class="formsec">${t('reg_sec_basic')}</div>
     <div class="photo-pick">
       <div class="pv" id="pv" style="${ph?`background-image:url('${ph}')`:''}">${ph?'':'🐱'}</div>
       <div><button class="btn ghost" style="margin:0" onclick="document.getElementById('photoInput').click()">${t('photo_pick')}</button>
@@ -686,14 +712,16 @@ function renderEditCat(catId, id){
     <label class="fld">${t('f_cat')}</label><select id="f_cat">${opts}</select>
     <div class="row2"><div><label class="fld">${t('f_sex')}</label>
       <select id="f_sex"><option value="남아" ${c.sex==='남아'?'selected':''}>${t('male')}</option><option value="여아" ${c.sex==='여아'?'selected':''}>${t('female')}</option></select></div>
-      <div><label class="fld">${t('f_bday')}</label><input type="date" id="f_bday" value="${(c.birthday&&c.birthday.length===10)?c.birthday:''}"></div></div>
-    <div class="row2"><div><label class="fld">${t('f_neutered')}</label>
-      <select id="f_neut"><option value="" ${!c.neutered?'selected':''}>${t('neutered_x')}</option><option value="y" ${c.neutered==='y'?'selected':''}>${t('neutered_y')}</option><option value="n" ${c.neutered==='n'?'selected':''}>${t('neutered_n')}</option></select></div>
-      <div><label class="fld">${t('f_weight_now')}</label><input type="number" step="0.1" id="f_weight" value="${esc(c.weight||'')}" inputmode="decimal"></div></div>
-    <label class="fld">${t('f_breed')}</label><input type="text" id="f_breed" value="${esc(c.breed||'')}" placeholder="${t('ph_breed')}">
-    <label class="fld">${t('f_vet')}</label><input type="text" id="f_vet" value="${esc(c.vet||'')}" placeholder="${t('ph_vet')}">
+      <div><label class="fld">${t('f_bday')}</label><input type="date" id="f_bday" value="${(c.birthday&&c.birthday.length===10)?c.birthday:''}"><div class="hint">${t('bday_hint')}</div></div></div>
+    <div class="row2"><div><label class="fld">${t('f_weight_now')}</label><input type="number" step="0.1" id="f_weight" value="${esc(c.weight||'')}" inputmode="decimal"></div>
+      <div><label class="fld">${t('f_breed')}</label><input type="text" id="f_breed" value="${esc(c.breed||'')}" placeholder="${t('ph_breed')}"></div></div>
+    <div class="formsec">${t('reg_sec_health')}</div>
+    <label class="fld">${t('f_neutered')}</label>
+    <select id="f_neut"><option value="" ${!c.neutered?'selected':''}>${t('neutered_x')}</option><option value="y" ${c.neutered==='y'?'selected':''}>${t('neutered_y')}</option><option value="n" ${c.neutered==='n'?'selected':''}>${t('neutered_n')}</option></select>
     <label class="fld">${t('f_disease')}</label><input type="text" id="f_disease" value="${esc(c.disease||'')}" placeholder="${t('ph_disease')}">
+    <label class="fld">${t('f_vet')}</label><input type="text" id="f_vet" value="${esc(c.vet||'')}" placeholder="${t('ph_vet')}">
     <label class="fld">${t('f_care')}</label><div class="recseg" id="careSeg">${careChips}</div>
+    <div class="formsec">${t('reg_sec_extra')}</div>
     <label class="fld">${t('f_nick')}</label><input type="text" id="f_nick" value="${esc(c.nick||'')}" placeholder="${t('ph_nick')}">
     <label class="fld">${t('f_desc')}</label><textarea id="f_desc" placeholder="${t('ph_desc')}">${esc(c.desc||'')}</textarea>
     <button class="btn primary" id="saveCat">${t('save')}</button>
