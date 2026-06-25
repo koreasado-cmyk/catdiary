@@ -47,7 +47,7 @@ const I18N = {
     rec_basic:'기본 건강 체크', rec_more:'자세히 기록하기 (구토·놀이·몸무게·약·사진·메모)', rec_more_close:'간단히 보기',
     rel_today:'오늘', rel_yesterday:'어제',
     view_list:'목록', view_cal:'캘린더',
-    f_condition:'😺 컨디션', f_meal:'🍚 식사', f_water:'💧 물', f_poop:'💩 대변', f_pee:'🚽 소변', f_vomit:'🤮 구토', f_play:'🧶 놀이',
+    f_condition:'😺 컨디션', f_meal:'🍚 식사', f_water:'💧 물', f_poop:'💩 대변', f_pee:'🚽 소변', f_vomit:'🤮 구토', f_play:'🧶 놀이', f_weather:'☀️ 날씨',
     f_weight:'⚖️ 몸무게(kg)', f_meds:'💊 약(투약 메모)', f_memo:'📝 메모',
     ph_meds:'예) 신장약 1회', ph_memo:'오늘 우리 아이 모습, 특이사항…',
     saved_feedback:'오늘 기록이 저장됐어요 🐾 내일도 같이 기록해요!', recent7:'최근 7일',
@@ -73,6 +73,8 @@ const I18N = {
     rep_basic:'기본 정보', rep_timeline:'증상 타임라인', rep_memo:'보호자 메모', rep_weight_trend:'몸무게 추이',
     vet_new:'병원 기록 추가', vet_edit:'병원 기록 수정', vet_empty:'병원 방문을 기록해 보세요 🏥',
     f_vdate:'방문일', f_symptom:'증상', f_diagnosis:'진단', f_prescription:'처방', f_cost:'진료비(원)', f_next:'다음 방문일', f_vmemo:'메모/검사결과',
+    f_hospital:'🏥 병원명', f_vetname:'👨‍⚕️ 수의사',
+    ph_hospital:'예) ○○동물병원', ph_vetname:'예) 김수의 원장님',
     ph_symptom:'예) 이틀째 구토, 식욕저하', ph_diagnosis:'예) 위장염 의심', ph_prescription:'예) 항구토제 3일분',
     next_visit:'다음 방문', alert_vet:'증상이나 진단을 입력해 주세요', confirm_delvet:'이 병원 기록을 삭제할까요?',
     catg_add:'카테고리 추가', catg_name:'카테고리 이름', ph_catg:'예) 우리집 냥이, 본가 냥이, 회사 길냥이', catg_emoji:'이모지 선택',
@@ -104,7 +106,8 @@ const I18N = {
       poop:{normal:'정상',loose:'묽음',constip:'변비',none:'없음'},
       pee:{normal:'정상',little:'적음',much:'많음',abnormal:'이상'},
       vomit:{none:'없음',yes:'있음'},
-      play:{'0':'0분','10':'10분','20':'20분+'}
+      play:{'0':'0분','10':'10분','20':'20분+'},
+      weather:{sunny:'☀️ 맑음',cloudy:'☁️ 흐림',rain:'🌧 비',snow:'❄️ 눈',hot:'🥵 더움',cold:'🥶 추움'}
     }
   },
   ja:{
@@ -152,7 +155,7 @@ const I18N = {
     rec_basic:'基本の健康チェック', rec_more:'詳しく記録する (嘔吐・遊び・体重・薬・写真・メモ)', rec_more_close:'簡単表示',
     rel_today:'今日', rel_yesterday:'昨日',
     view_list:'リスト', view_cal:'カレンダー',
-    f_condition:'😺 体調', f_meal:'🍚 食事', f_water:'💧 水', f_poop:'💩 便', f_pee:'🚽 尿', f_vomit:'🤮 嘔吐', f_play:'🧶 遊び',
+    f_condition:'😺 体調', f_meal:'🍚 食事', f_water:'💧 水', f_poop:'💩 便', f_pee:'🚽 尿', f_vomit:'🤮 嘔吐', f_play:'🧶 遊び', f_weather:'☀️ 天気',
     f_weight:'⚖️ 体重(kg)', f_meds:'💊 薬(投薬メモ)', f_memo:'📝 メモ',
     ph_meds:'例) 腎臓薬 1回', ph_memo:'今日のうちの子の様子、気づいたこと…',
     saved_feedback:'今日の記録を保存しました 🐾 明日も一緒に記録しましょう！', recent7:'最近7日',
@@ -178,6 +181,8 @@ const I18N = {
     rep_basic:'基本情報', rep_timeline:'症状タイムライン', rep_memo:'飼い主メモ', rep_weight_trend:'体重の推移',
     vet_new:'病院記録の追加', vet_edit:'病院記録の編集', vet_empty:'通院を記録してみましょう 🏥',
     f_vdate:'受診日', f_symptom:'症状', f_diagnosis:'診断', f_prescription:'処方', f_cost:'診療費(円)', f_next:'次回受診日', f_vmemo:'メモ/検査結果',
+    f_hospital:'🏥 病院名', f_vetname:'👨‍⚕️ 獣医師',
+    ph_hospital:'例) ○○動物病院', ph_vetname:'例) 田中先生',
     ph_symptom:'例) 2日続けて嘔吐、食欲低下', ph_diagnosis:'例) 胃腸炎の疑い', ph_prescription:'例) 制吐剤3日分',
     next_visit:'次回受診', alert_vet:'症状か診断を入力してください', confirm_delvet:'この病院記録を削除しますか？',
     catg_add:'カテゴリー追加', catg_name:'カテゴリー名', ph_catg:'例) うちの猫、実家の猫、会社の野良猫', catg_emoji:'絵文字を選択',
@@ -209,7 +214,8 @@ const I18N = {
       poop:{normal:'正常',loose:'軟便',constip:'便秘',none:'なし'},
       pee:{normal:'正常',little:'少ない',much:'多い',abnormal:'異常'},
       vomit:{none:'なし',yes:'あり'},
-      play:{'0':'0分','10':'10分','20':'20分+'}
+      play:{'0':'0分','10':'10分','20':'20分+'},
+      weather:{sunny:'☀️ 晴れ',cloudy:'☁️ くもり',rain:'🌧 雨',snow:'❄️ 雪',hot:'🥵 暑い',cold:'🥶 寒い'}
     }
   }
 };
@@ -226,7 +232,8 @@ const REC_OPTS = {
   poop:['normal','loose','constip','none'],
   pee:['normal','little','much','abnormal'],
   vomit:['none','yes'],
-  play:['0','10','20']
+  play:['0','10','20'],
+  weather:['sunny','cloudy','rain','snow','hot','cold']
 };
 const CARE_TOPICS=['vomit','water','weight','meds','kidney','daily'];
 
@@ -445,9 +452,13 @@ function render(){
   if(v==='settings') return renderSettings();
 }
 function addFab(fn){ const b=document.createElement('button'); b.className='fab'; b.textContent='＋'; b.setAttribute('aria-label', t('aria_add')); b.onclick=fn; document.body.appendChild(b); }
-/* 날짜 입력 옆에 한국식(2026.06.25) 표기를 실시간으로 보여줌 */
+/* 날짜의 요일 표기 (예: 목요일 / 木曜日) */
+function weekdayStr(s){ if(!s||s.length<10) return ''; const d=new Date(s+'T00:00:00'); if(isNaN(d.getTime())) return '';
+  const ko=['일','월','화','수','목','금','토'], ja=['日','月','火','水','木','金','土'];
+  return LANG==='ja' ? ja[d.getDay()]+'曜日' : ko[d.getDay()]+'요일'; }
+/* 날짜 입력 옆에 한국식(2026.06.25 목요일) 표기를 실시간으로 보여줌 */
 function wireDateHint(inputId,hintId){ const inp=$('#'+inputId), h=$('#'+hintId); if(!inp||!h) return;
-  const upd=()=>{ h.textContent = inp.value? '📅 '+fmtDate(inp.value) : ''; };
+  const upd=()=>{ h.textContent = inp.value? '📅 '+fmtDate(inp.value)+' ('+weekdayStr(inp.value)+')' : ''; };
   inp.addEventListener('change',upd); inp.addEventListener('input',upd); upd(); }
 
 /* ---------- 홈 ---------- */
@@ -634,7 +645,7 @@ function catProfile(c){
 function recChips(e){
   const out=[]; const warns=recWarns(e);
   const add=(field,emoji)=>{ if(e[field]){ const lab=L()[field][e[field]]; if(lab){ const w=warns.indexOf(field)>=0?' warn':''; out.push(`<span class="rchip${w}">${emoji}${lab}</span>`);} } };
-  add('condition','😺'); add('meal','🍚'); add('water','💧'); add('poop','💩'); add('pee','🚽'); add('vomit','🤮'); add('play','🧶');
+  add('weather',''); add('condition','😺'); add('meal','🍚'); add('water','💧'); add('poop','💩'); add('pee','🚽'); add('vomit','🤮'); add('play','🧶');
   if(e.weight) out.push(`<span class="rchip">⚖️${esc(e.weight)}kg</span>`);
   if(e.meds) out.push(`<span class="rchip">💊${esc(e.meds)}</span>`);
   return out.length? `<div class="rchips">${out.join('')}</div>`:'';
@@ -648,7 +659,7 @@ function catRecord(c){
   const body = list.length ? list.map(e=>{
     const ph=DB.photos['r_'+e.id];
     return `<div class="entry" onclick="go('editRecord',{catId:'${id}',id:'${e.id}'})">
-      <div class="d"><span>📅 ${fmtDateRel(e.date)}</span><span class="mood">${e.mood||''}</span></div>
+      <div class="d"><span>📅 ${fmtDateRel(e.date)} (${weekdayStr(e.date)})</span><span class="mood">${e.mood||''}</span></div>
       ${recChips(e)}
       ${e.body?`<div class="b">${esc(e.body)}</div>`:''}
       ${ph?`<img class="thumb" src="${ph}">`:''}</div>`;
@@ -768,7 +779,7 @@ function catReport(c){
   let events=[];
   rs.forEach(e=>{ const w=recWarns(e); if(w.length){ events.push(`<div class="evline"><span class="dt">${fmtDate(e.date)}</span>${w.map(k=>labels[k]).join(', ')}${e.body?' · '+esc(e.body):''}</div>`); }});
   const meds=[...new Set(rs.filter(e=>e.meds).map(e=>e.meds.trim()))];
-  const vetLines=vets.map(v=>`<div class="evline"><span class="dt">${fmtDate(v.date)}</span>${esc(v.symptom||'')}${v.diagnosis?' · 🩺'+esc(v.diagnosis):''}${v.prescription?' · 💊'+esc(v.prescription):''}${v.next?' · 📅'+t('next_visit')+' '+fmtDate(v.next):''}</div>`).join('');
+  const vetLines=vets.map(v=>`<div class="evline"><span class="dt">${fmtDate(v.date)}</span>${v.hospital?'🏥'+esc(v.hospital)+(v.vetname?'('+esc(v.vetname)+')':'')+' · ':(v.vetname?'👨‍⚕️'+esc(v.vetname)+' · ':'')}${esc(v.symptom||'')}${v.diagnosis?' · 🩺'+esc(v.diagnosis):''}${v.prescription?' · 💊'+esc(v.prescription):''}${v.next?' · 📅'+t('next_visit')+' '+fmtDate(v.next):''}</div>`).join('');
   const memoLines=rs.filter(e=>e.body).map(e=>`<div class="evline"><span class="dt">${fmtDate(e.date)}</span>${esc(e.body)}</div>`).join('');
   const D=t('none_dash');
   const rrow=(k,v,warn)=>`<div class="rrow"><span class="k">${k}</span><span class="v${warn?' warn':''}">${v}</span></div>`;
@@ -852,6 +863,7 @@ function catVet(c){
   const list=vetsOf(c.id).sort((a,b)=>(b.date||'').localeCompare(a.date||''));
   return list.length ? list.map(v=>`<div class="entry" onclick="go('editVet',{catId:'${c.id}',id:'${v.id}'})">
       <div class="d"><span>🏥 ${fmtDate(v.date)}</span>${v.cost?`<span>${Number(v.cost).toLocaleString()}</span>`:''}</div>
+      ${(v.hospital||v.vetname)?`<div class="b">${v.hospital?'🏥 '+esc(v.hospital):''}${v.hospital&&v.vetname?' · ':''}${v.vetname?'👨‍⚕️ '+esc(v.vetname):''}</div>`:''}
       ${v.symptom?`<div class="t">${esc(v.symptom)}</div>`:''}
       ${v.diagnosis?`<div class="b">🩺 ${esc(v.diagnosis)}</div>`:''}
       ${v.prescription?`<div class="b">💊 ${esc(v.prescription)}</div>`:''}
@@ -950,6 +962,7 @@ function renderEditRecord(catId, id, presetDate){
     <h4 class="recsec">${t('rec_basic')}</h4>
     <label class="fld">${t('f_mood')}</label>
     <div class="moodpick" id="moods">${moods.map(m=>`<button class="${e.mood===m?'on':''}" data-m="${m}">${m}</button>`).join('')}</div>
+    ${recSeg('weather',e.weather)}
     ${basicFields}
     <button type="button" class="moretoggle" id="moreToggle">${hasMore?'▴ '+t('rec_more_close'):'▾ '+t('rec_more')}</button>
     <div class="morewrap" id="moreWrap" style="display:${hasMore?'block':'none'}">
@@ -973,7 +986,7 @@ function renderEditRecord(catId, id, presetDate){
   const mt=$('#moreToggle'), mw=$('#moreWrap');
   mt.onclick=()=>{ const open=mw.style.display!=='none'; mw.style.display=open?'none':'block'; mt.textContent=open?'▾ '+t('rec_more'):'▴ '+t('rec_more_close'); };
   const sel={};
-  ['condition','meal','water','poop','pee','vomit','play'].forEach(f=>{ if(e[f]) sel[f]=e[f]; });
+  ['condition','meal','water','poop','pee','vomit','play','weather'].forEach(f=>{ if(e[f]) sel[f]=e[f]; });
   $('#view').querySelectorAll('.recseg[data-f]').forEach(seg=>{
     seg.querySelectorAll('button').forEach(b=>b.onclick=()=>{ const f=seg.dataset.f;
       if(sel[f]===b.dataset.v){ sel[f]=''; b.classList.remove('on'); }
@@ -986,7 +999,7 @@ function renderEditRecord(catId, id, presetDate){
   $('#rphoto').onchange=onPhoto;
   $('#rphotoCam').onchange=onPhoto;
   $('#saveR').onclick=async ()=>{
-    const obj={ id:rid, catId, date:$('#r_date').value||todayStr(), mood,
+    const obj={ id:rid, catId, date:$('#r_date').value||todayStr(), mood, weather:sel.weather||'',
       condition:sel.condition||'', meal:sel.meal||'', water:sel.water||'', poop:sel.poop||'', pee:sel.pee||'', vomit:sel.vomit||'', play:sel.play||'',
       weight:$('#r_weight').value.trim(), meds:$('#r_meds').value.trim(), body:$('#r_body').value.trim() };
     if(editing){ const i=DB.state.diary.findIndex(x=>x.id===rid); DB.state.diary[i]=obj; } else DB.state.diary.push(obj);
@@ -1028,8 +1041,11 @@ function renderEditVet(catId, id){
   const c=catById(catId); const [a,s]=c?catAccent(c):['#ff8fab','#ffe3ec']; setTheme(a,s);
   const editing=!!id; const e=editing? DB.state.vet.find(x=>x.id===id) : {date:todayStr()};
   $('#title').textContent= editing?t('vet_edit'):t('vet_new');
+  const defHosp = e.hospital!=null ? e.hospital : (!editing && c && c.vet ? c.vet : '');
   $('#view').innerHTML=`
     <label class="fld">${t('f_vdate')}</label><input type="date" id="v_date" value="${esc(e.date||todayStr())}"><div class="hint" id="v_datehint"></div>
+    <div class="row2"><div><label class="fld">${t('f_hospital')}</label><input type="text" id="v_hosp" value="${esc(defHosp)}" placeholder="${t('ph_hospital')}"></div>
+      <div><label class="fld">${t('f_vetname')}</label><input type="text" id="v_vetname" value="${esc(e.vetname||'')}" placeholder="${t('ph_vetname')}"></div></div>
     <label class="fld">${t('f_symptom')}</label><input type="text" id="v_sym" value="${esc(e.symptom||'')}" placeholder="${t('ph_symptom')}">
     <label class="fld">${t('f_diagnosis')}</label><input type="text" id="v_diag" value="${esc(e.diagnosis||'')}" placeholder="${t('ph_diagnosis')}">
     <label class="fld">${t('f_prescription')}</label><input type="text" id="v_pre" value="${esc(e.prescription||'')}" placeholder="${t('ph_prescription')}">
@@ -1043,6 +1059,7 @@ function renderEditVet(catId, id){
     const sym=$('#v_sym').value.trim(), diag=$('#v_diag').value.trim();
     if(!sym && !diag){ alert(t('alert_vet')); return; }
     const obj={ id:id||uid(), catId, date:$('#v_date').value||todayStr(), symptom:sym, diagnosis:diag,
+      hospital:$('#v_hosp').value.trim(), vetname:$('#v_vetname').value.trim(),
       prescription:$('#v_pre').value.trim(), cost:$('#v_cost').value.trim(), next:$('#v_next').value, memo:$('#v_memo').value.trim() };
     if(editing){ const i=DB.state.vet.findIndex(x=>x.id===id); DB.state.vet[i]=obj; } else DB.state.vet.push(obj);
     await DB.saveState(); back();
